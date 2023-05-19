@@ -10,16 +10,6 @@ public class Identificador {
         Matcher m1 = pattern_one.matcher(valor);
         Matcher m2 = pattern_two.matcher(valor);
         boolean found = m1.find() || m2.find();
-        if (!found) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public static int getNumber (String valor) {
-        Pattern pattern = Pattern.compile("\\d*");
-        Matcher matcher = pattern.matcher(valor);
-        int n =  Integer.parseInt(matcher.group());
+        return found;
     }
 }
