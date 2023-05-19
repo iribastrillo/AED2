@@ -1,6 +1,8 @@
 package aed2.sistema;
 
+import aed2.dominio.Pasajero;
 import aed2.dominio.vo.*;
+import aed2.estructuras.ABB;
 import aed2.interfaz.Consulta;
 import aed2.interfaz.Retorno;
 import aed2.interfaz.Sistema;
@@ -8,7 +10,7 @@ import aed2.sistema.servicios.Pasajeros;
 
 public class Implementacion implements Sistema {
     private int maxEstaciones;
-    private Pasajeros servicioPasajeros;
+    private ABB abbPasajeros;
     public int getMaxEstaciones() {
         return maxEstaciones;
     }
@@ -22,7 +24,7 @@ public class Implementacion implements Sistema {
             return Retorno.error1("E1: la cantidad de estaciones debe ser mayor que 5.");
         }
         setMaxEstaciones(maxEstaciones);
-        this.servicioPasajeros = new Pasajeros();
+        abbPasajeros = new ABB();
         return Retorno.ok();
     }
     @Override
@@ -33,6 +35,8 @@ public class Implementacion implements Sistema {
         if (!NoVacio.validate(nombre)) {
             return Retorno.error1("E1: El nombre no puede ser vacío.");
         }
+        Pasajero pasajero = new Pasajero (identificador, nombre, edad);
+        abbPasajeros.insertar(pasajero);
         return Retorno.ok();
     }
 
@@ -94,4 +98,11 @@ public class Implementacion implements Sistema {
         return null;
     }
 
+    public ABB getAbbPasajeros() {
+        return abbPasajeros;
+    }
+
+    public void setAbbPasajeros(ABB abbPasajeros) {
+        this.abbPasajeros = abbPasajeros;
+    }
 }

@@ -12,4 +12,13 @@ public class Identificador {
         boolean found = m1.find() || m2.find();
         return found;
     }
+    public static int getNumber(String input) {
+        StringBuilder numberBuilder = new StringBuilder();
+        for (char c : input.toCharArray()) {
+            if (Character.isDigit(c)) {
+                numberBuilder.append(c);
+            }
+        }
+        return Integer.parseInt(numberBuilder.toString());
+    }
 }

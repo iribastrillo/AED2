@@ -6,88 +6,95 @@ public class ABB {
 
     private Nodo raiz;
 
+    public Nodo getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(Nodo raiz) {
+        this.raiz = raiz;
+    }
+
     private class Nodo {
-        Pasajero dato;
+        Pasajero pasajero;
         Nodo izquierdo;
         Nodo derecho;
 
-        public Nodo(Pasajero dato) {
-            this.dato = dato;
+        public Nodo(Pasajero pasajero) {
+            this.pasajero = pasajero;
             this.izquierdo = null;
             this.derecho = null;
         }
     }
 
-    public void insertar(int dato) {
-        raiz = insertarRecursivo(raiz, dato);
+    public void insertar(Pasajero pasajero) {
+        raiz = insertarRecursivo(raiz, pasajero);
     }
 
-    private Nodo insertarRecursivo(Nodo nodo, int dato) {
+    private Nodo insertarRecursivo(Nodo nodo, Pasajero pasajero) {
         if (nodo == null) {
-            return new Nodo(dato);
+            return new Nodo(pasajero);
         }
-
-        if (dato < nodo.dato) {
-            nodo.izquierdo = insertarRecursivo(nodo.izquierdo, dato);
-        } else if (dato > nodo.dato) {
-            nodo.derecho = insertarRecursivo(nodo.derecho, dato);
+        if (pasajero.getNro() < nodo.pasajero.getNro()) {
+            nodo.izquierdo = insertarRecursivo(nodo.izquierdo, pasajero);
+        } else if (pasajero.getNro() > nodo.pasajero.getNro()) {
+            nodo.derecho = insertarRecursivo(nodo.derecho, pasajero);
         }
-
         return nodo;
     }
 
-    public boolean buscar(int dato) {
-        return buscarRecursivo(raiz, dato);
+    public boolean buscar(Pasajero pasajero) {
+        return buscarRecursivo(raiz, pasajero);
     }
 
-    private boolean buscarRecursivo(Nodo nodo, int dato) {
+    private boolean buscarRecursivo(Nodo nodo, Pasajero pasajero) {
         if (nodo == null) {
             return false;
         }
 
-        if (dato == nodo.dato) {
-            return true;
-        } else if (dato < nodo.dato) {
-            return buscarRecursivo(nodo.izquierdo, dato);
-        } else {
-            return buscarRecursivo(nodo.derecho, dato);
-        }
+//        if (pasajero == nodo.pasajero) {
+//            return true;
+//        } else if (pasajero < nodo.pasajero) {
+//            return buscarRecursivo(nodo.izquierdo, pasajero);
+//        } else {
+//            return buscarRecursivo(nodo.derecho, pasajero);
+//        }
+        return true;
     }
 
-    public void eliminar(int dato) {
-        raiz = eliminarRecursivo(raiz, dato);
+    public void eliminar(Pasajero pasajero) {
+        raiz = eliminarRecursivo(raiz, pasajero);
     }
 
-    private Nodo eliminarRecursivo(Nodo nodo, int dato) {
+    private Nodo eliminarRecursivo(Nodo nodo, Pasajero pasajero) {
         if (nodo == null) {
             return null;
         }
 
-        if (dato < nodo.dato) {
-            nodo.izquierdo = eliminarRecursivo(nodo.izquierdo, dato);
-        } else if (dato > nodo.dato) {
-            nodo.derecho = eliminarRecursivo(nodo.derecho, dato);
-        } else {
-            if (nodo.izquierdo == null) {
-                return nodo.derecho;
-            } else if (nodo.derecho == null) {
-                return nodo.izquierdo;
-            }
-
-            nodo.dato = obtenerMinimo(nodo.derecho);
-            nodo.derecho = eliminarRecursivo(nodo.derecho, nodo.dato);
-        }
+//        if (pasajero < nodo.pasajero) {
+//            nodo.izquierdo = eliminarRecursivo(nodo.izquierdo, pasajero);
+//        } else if (pasajero > nodo.pasajero) {
+//            nodo.derecho = eliminarRecursivo(nodo.derecho, pasajero);
+//        } else {
+//            if (nodo.izquierdo == null) {
+//                return nodo.derecho;
+//            } else if (nodo.derecho == null) {
+//                return nodo.izquierdo;
+//            }
+//
+//            // nodo.pasajero = obtenerMinimo(nodo.derecho);
+//            nodo.derecho = eliminarRecursivo(nodo.derecho, nodo.pasajero);
+//        }
 
         return nodo;
     }
 
     private int obtenerMinimo(Nodo nodo) {
-        int minimo = nodo.dato;
+        //int minimo = nodo.pasajero;
         while (nodo.izquierdo != null) {
-            minimo = nodo.izquierdo.dato;
+            // minimo = nodo.izquierdo.pasajero;
             nodo = nodo.izquierdo;
         }
-        return minimo;
+        return 0;
     }
 
     public void imprimirEnOrden() {
@@ -97,7 +104,7 @@ public class ABB {
     private void imprimirEnOrdenRecursivo(Nodo nodo) {
         if (nodo != null) {
             imprimirEnOrdenRecursivo(nodo.izquierdo);
-            System.out.print(nodo.dato + " ");
+            System.out.print(nodo.pasajero + "\n");
             imprimirEnOrdenRecursivo(nodo.derecho);
         }
     }

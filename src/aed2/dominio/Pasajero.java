@@ -2,23 +2,45 @@ package aed2.dominio;
 
 import aed2.dominio.vo.Identificador;
 import aed2.dominio.vo.NoVacio;
-public class Pasajero implements Comparable{
-    private Identificador id;
+public class Pasajero {
+    private String id;
     private int nro;
-    private NoVacio nombre;
+    private String nombre;
     private int edad;
-    public Pasajero (Identificador id, NoVacio nombre, int edad) {
-        id = id;
-        nombre = nombre;
-        edad = edad;
+    public Pasajero (String id, String nombre, int edad) {
+        this.id = id;
+        this.nro = Identificador.getNumber(id);
+        this.nombre = nombre;
+        this.edad = edad;
     }
 
-    public Identificador getId() {
+    @Override
+    public String toString() {
+        return "PASAJERO: " + id;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Identificador id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public int getNro() {
+        return nro;
+    }
+
+    public void setNro(int nro) {
+        this.nro = nro;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getEdad() {
@@ -27,18 +49,5 @@ public class Pasajero implements Comparable{
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    public NoVacio getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(NoVacio nombre) {
-        this.nombre = nombre;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
     }
 }
