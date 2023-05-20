@@ -11,6 +11,16 @@ import aed2.interfaz.Sistema;
 
 public class Implementacion implements Sistema {
     private int maxEstaciones;
+
+    public int getCantidadActual() {
+        return cantidadActual;
+    }
+
+    public void setCantidadActual(int cantidadActual) {
+        this.cantidadActual = cantidadActual;
+    }
+
+    private int cantidadActual;
     private ABB abbPasajeros;
     private Lista<Estacion> stations;
     public int getMaxEstaciones() {
@@ -26,6 +36,7 @@ public class Implementacion implements Sistema {
             return Retorno.error1("E1: la cantidad de estaciones debe ser mayor que 5.");
         }
         setMaxEstaciones(maxEstaciones);
+        setCantidadActual(0);
         abbPasajeros = new ABB();
         stations = new Lista<Estacion>();
         return Retorno.ok();
@@ -96,14 +107,18 @@ public class Implementacion implements Sistema {
             return Retorno.error2("E2: El código de la estación no puede ser vacío.");
         }
         if (!Codigo.validate(codigo)) {
-            return Retorno.error2("E2: El código de la estación no es válido.");
+            return Retorno.error3("E3: El código de la estación no es válido.");
         }
+        if (getCantidadActual() == getMaxEstaciones()) {
+            return  Retorno.error1 ("E1: Ya se registró el máximo permitido de estaciones");
+        }
+
         Estacion station = new Estacion(codigo, nombre);
+
         if (stations.existe(station)) {
             return Retorno.error4("E4: Ya existe una estación con ese código.");
         }
         stations.insertar(station);
-
         return Retorno.ok();
     }
 
