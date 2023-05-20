@@ -35,6 +35,13 @@ public class Implementacion implements Sistema {
         if (!NoVacio.validate(nombre)) {
             return Retorno.error1("E1: El nombre no puede ser vacío.");
         }
+
+        Pasajero existe = new Pasajero (identificador);
+
+        if (existe == null) {
+            return Retorno.error3("E3: El pasajero ya está registrado.");
+        }
+
         Pasajero pasajero = new Pasajero (identificador, nombre, edad);
         abbPasajeros.insertar(pasajero);
         return Retorno.ok();
@@ -50,17 +57,26 @@ public class Implementacion implements Sistema {
         if (!Identificador.validate(identificador)) {
             return Retorno.error1("E1: El identificador no es válido.");
         }
-        return Retorno.noImplementada();
+
+        Pasajero existe = abbPasajeros.buscar(new Pasajero (identificador));
+
+        if (existe == null) {
+            return Retorno.error2("E2: No hay un pasajero registrado con ese identificador.");
+        }
+
+        return Retorno.ok(existe.toString());
     }
 
     @Override
     public Retorno listarPasajerosAscendente() {
-        return Retorno.noImplementada();
+        abbPasajeros.imprimirEnOrdenAscendente();
+        return Retorno.ok();
     }
 
     @Override
     public Retorno listarPasajerosDescendente() {
-        return Retorno.noImplementada();
+        abbPasajeros.imprimirEnOrdenDescendente();
+        return Retorno.ok();
     }
 
     @Override

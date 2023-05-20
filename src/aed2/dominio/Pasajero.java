@@ -7,11 +7,21 @@ public class Pasajero {
     private int nro;
     private String nombre;
     private int edad;
+    public Pasajero (String id) {
+        this.id = id;
+        this.nro = Identificador.getNumber(id);
+    }
     public Pasajero (String id, String nombre, int edad) {
         this.id = id;
         this.nro = Identificador.getNumber(id);
         this.nombre = nombre;
         this.edad = edad;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Pasajero otro = (Pasajero) obj;
+        return this.nro == otro.nro;
     }
 
     @Override

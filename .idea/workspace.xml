@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/dominio/Pasajero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/dominio/Pasajero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aed2/dominio/vo/Identificador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/dominio/vo/Identificador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/ABB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/ABB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" afterDir="false" />
     </list>
@@ -59,6 +58,17 @@
       <updated>1683851177232</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/aed2/estructuras/ABB.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AED2$Main.ic" NAME="Main Coverage Results" MODIFIED="1683861923560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

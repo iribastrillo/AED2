@@ -42,23 +42,21 @@ public class ABB {
         return nodo;
     }
 
-    public boolean buscar(Pasajero pasajero) {
+    public Pasajero buscar(Pasajero pasajero) {
         return buscarRecursivo(raiz, pasajero);
     }
 
-    private boolean buscarRecursivo(Nodo nodo, Pasajero pasajero) {
+    private Pasajero buscarRecursivo(Nodo nodo, Pasajero pasajero) {
         if (nodo == null) {
-            return false;
+            return null;
         }
-
-//        if (pasajero == nodo.pasajero) {
-//            return true;
-//        } else if (pasajero < nodo.pasajero) {
-//            return buscarRecursivo(nodo.izquierdo, pasajero);
-//        } else {
-//            return buscarRecursivo(nodo.derecho, pasajero);
-//        }
-        return true;
+        if (pasajero.equals(nodo.pasajero)) {
+            return nodo.pasajero;
+        } else if (pasajero.getNro() < nodo.pasajero.getNro()) {
+            return buscarRecursivo(nodo.izquierdo, pasajero);
+        } else {
+            return buscarRecursivo(nodo.derecho, pasajero);
+        }
     }
 
     public void eliminar(Pasajero pasajero) {
@@ -97,15 +95,24 @@ public class ABB {
         return 0;
     }
 
-    public void imprimirEnOrden() {
-        imprimirEnOrdenRecursivo(raiz);
+    public void imprimirEnOrdenDescendente() {
+        imprimirEnOrdenDescendente(raiz);
     }
-
-    private void imprimirEnOrdenRecursivo(Nodo nodo) {
+    private void imprimirEnOrdenDescendente(Nodo nodo) {
         if (nodo != null) {
-            imprimirEnOrdenRecursivo(nodo.izquierdo);
+            imprimirEnOrdenDescendente(nodo.izquierdo);
             System.out.print(nodo.pasajero + "\n");
-            imprimirEnOrdenRecursivo(nodo.derecho);
+            imprimirEnOrdenDescendente(nodo.derecho);
+        }
+    }
+    public void imprimirEnOrdenAscendente() {
+        imprimirEnOrdenAscedente(raiz);
+    }
+    private void imprimirEnOrdenAscedente(Nodo nodo) {
+        if (nodo != null) {
+            imprimirEnOrdenDescendente(nodo.derecho);
+            System.out.print(nodo.pasajero + "\n");
+            imprimirEnOrdenDescendente(nodo.izquierdo);
         }
     }
 }

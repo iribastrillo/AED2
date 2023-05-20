@@ -8,6 +8,9 @@ public class Main {
         sistema.inicializarSistema(8);
         System.out.println(sistema.registrarPasajero("FR123.123#3", "Ignacio", 30));
         System.out.println(sistema.registrarPasajero("DE124.124#5", "Roberto", 30));
-        sistema.getAbbPasajeros().imprimirEnOrden();
+        System.out.println(sistema.buscarPasajero("FR123.123#3"));
+        System.out.println(sistema.buscarPasajero("ES134.167#3"));
+        sistema.listarPasajerosDescendente();
+        sistema.listarPasajerosAscendente();
     }
 }
