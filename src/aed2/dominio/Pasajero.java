@@ -6,6 +6,7 @@ public class Pasajero {
     private String id;
     private int nro;
     private String nombre;
+    private String nacionalidad;
     private int edad;
     public Pasajero (String id) {
         this.id = id;
@@ -13,6 +14,7 @@ public class Pasajero {
     }
     public Pasajero (String id, String nombre, int edad) {
         this.id = id;
+        this.nacionalidad = id.substring(0, 1);
         this.nro = Identificador.getNumber(id);
         this.nombre = nombre;
         this.edad = edad;
