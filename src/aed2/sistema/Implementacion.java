@@ -1,8 +1,10 @@
 package aed2.sistema;
 
+import aed2.dominio.Estacion;
 import aed2.dominio.Pasajero;
 import aed2.dominio.vo.*;
 import aed2.estructuras.ABB;
+import aed2.estructuras.Lista;
 import aed2.interfaz.Consulta;
 import aed2.interfaz.Retorno;
 import aed2.interfaz.Sistema;
@@ -10,6 +12,7 @@ import aed2.interfaz.Sistema;
 public class Implementacion implements Sistema {
     private int maxEstaciones;
     private ABB abbPasajeros;
+    private Lista<Estacion> stations;
     public int getMaxEstaciones() {
         return maxEstaciones;
     }
@@ -24,6 +27,7 @@ public class Implementacion implements Sistema {
         }
         setMaxEstaciones(maxEstaciones);
         abbPasajeros = new ABB();
+        stations = new Lista<Estacion>();
         return Retorno.ok();
     }
     @Override
@@ -85,7 +89,18 @@ public class Implementacion implements Sistema {
 
     @Override
     public Retorno registrarEstacionDeTren(String codigo, String nombre) {
-        return Retorno.noImplementada();
+        if (!NoVacio.validate(nombre)) {
+            return Retorno.error2("E2: El nombre de la estación no puede ser vacío.");
+        }
+        if (!NoVacio.validate(codigo)) {
+            return Retorno.error2("E2: El código de la estación no puede ser vacío.");
+        }
+        if (!Codigo.validate(codigo)) {
+            return Retorno.error2("E2: El código de la estación no es válido.");
+        }
+        Estacion station = new Estacion(codigo, nombre);
+        stations.insertar(station);
+        return Retorno.ok();
     }
 
     @Override
@@ -119,5 +134,13 @@ public class Implementacion implements Sistema {
 
     public void setAbbPasajeros(ABB abbPasajeros) {
         this.abbPasajeros = abbPasajeros;
+    }
+
+    public Lista<Estacion> getStations() {
+        return stations;
+    }
+
+    public void setStations(Lista<Estacion> stations) {
+        this.stations = stations;
     }
 }
