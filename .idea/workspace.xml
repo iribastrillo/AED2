@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60d4c193-15e8-4c80-ac70-6f7fb5942b6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/aed2/estructuras/Estaciones.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aed2/estructuras/IGrafo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aed2/estructuras/Vertex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aed2/dominio/Pasajero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/dominio/Pasajero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/Estaciones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/Estaciones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/Vertex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/sistema/servicios/Pasajeros.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/sistema/servicios/excepciones/PassengerAlreadyExistsError.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

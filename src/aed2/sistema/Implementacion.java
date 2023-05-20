@@ -6,7 +6,6 @@ import aed2.estructuras.ABB;
 import aed2.interfaz.Consulta;
 import aed2.interfaz.Retorno;
 import aed2.interfaz.Sistema;
-import aed2.sistema.servicios.Pasajeros;
 
 public class Implementacion implements Sistema {
     private int maxEstaciones;
