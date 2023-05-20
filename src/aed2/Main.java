@@ -10,7 +10,7 @@ public class Main {
         System.out.println(sistema.registrarPasajero("DE124.124#5", "Roberto", 30));
         System.out.println(sistema.buscarPasajero("FR123.123#3"));
         System.out.println(sistema.buscarPasajero("ES134.167#3"));
-        sistema.listarPasajerosDescendente();
-        sistema.listarPasajerosAscendente();
+        System.out.println(sistema.listarPasajerosDescendente());
+        System.out.println(sistema.listarPasajerosAscendente());
     }
 }

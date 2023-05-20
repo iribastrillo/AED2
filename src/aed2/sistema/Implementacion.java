@@ -68,14 +68,12 @@ public class Implementacion implements Sistema {
 
     @Override
     public Retorno listarPasajerosAscendente() {
-        abbPasajeros.imprimirEnOrdenAscendente();
-        return Retorno.ok();
+        return Retorno.ok(abbPasajeros.imprimirEnOrdenAscendente());
     }
 
     @Override
     public Retorno listarPasajerosDescendente() {
-        abbPasajeros.imprimirEnOrdenDescendente();
-        return Retorno.ok();
+        return Retorno.ok(abbPasajeros.imprimirEnOrdenDescendente());
     }
 
     @Override

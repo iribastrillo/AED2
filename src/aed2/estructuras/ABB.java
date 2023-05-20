@@ -95,24 +95,43 @@ public class ABB {
         return 0;
     }
 
-    public void imprimirEnOrdenDescendente() {
-        imprimirEnOrdenDescendente(raiz);
+    public String imprimirEnOrdenDescendente() {
+        String valorString = imprimirEnOrdenDescendente(raiz);
+        return valorString.substring(0, valorString.length()-1);
     }
-    private void imprimirEnOrdenDescendente(Nodo nodo) {
+//    private void imprimirEnOrdenDescendente(Nodo nodo) {
+//        if (nodo != null) {
+//            imprimirEnOrdenDescendente(nodo.izquierdo);
+//            imprimirEnOrdenDescendente(nodo.derecho);
+//            System.out.print(nodo.pasajero+"|");
+//        }
+//    }
+    private String imprimirEnOrdenDescendente(Nodo nodo) {
         if (nodo != null) {
-            imprimirEnOrdenDescendente(nodo.izquierdo);
-            System.out.print(nodo.pasajero + "\n");
-            imprimirEnOrdenDescendente(nodo.derecho);
+            if (nodo.izquierdo == null && nodo.derecho == null) {
+                return nodo.pasajero + "|";
+            } else {
+                return nodo.pasajero + "|"
+                        + imprimirEnOrdenDescendente(nodo.izquierdo)
+                        + imprimirEnOrdenDescendente(nodo.derecho);
+            }
         }
+        return "";
     }
-    public void imprimirEnOrdenAscendente() {
-        imprimirEnOrdenAscedente(raiz);
+    public String imprimirEnOrdenAscendente() {
+        String valorString = imprimirEnOrdenAscedente(raiz);
+        return valorString.substring(0, valorString.length()-1);
     }
-    private void imprimirEnOrdenAscedente(Nodo nodo) {
+    private String imprimirEnOrdenAscedente(Nodo nodo) {
         if (nodo != null) {
-            imprimirEnOrdenDescendente(nodo.derecho);
-            System.out.print(nodo.pasajero + "\n");
-            imprimirEnOrdenDescendente(nodo.izquierdo);
+            if (nodo.izquierdo == null && nodo.derecho == null) {
+                return nodo.pasajero + "|";
+            } else {
+                return imprimirEnOrdenAscedente(nodo.izquierdo)
+                        + imprimirEnOrdenAscedente(nodo.derecho)
+                        + nodo.pasajero + "|";
+            }
         }
+        return "";
     }
 }
