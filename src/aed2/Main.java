@@ -1,4 +1,5 @@
 package aed2;
+import aed2.dominio.Estacion;
 import aed2.dominio.Pasajero;
 import aed2.sistema.Implementacion;
 
@@ -12,6 +13,5 @@ public class Main {
         System.out.println(sistema.buscarPasajero("ES134.167#3"));
         sistema.registrarEstacionDeTren("MMM123", "Madrid");
         sistema.registrarEstacionDeTren("FFF123", "Paris");
-        sistema.getStations().imprimirLista();
     }
 }

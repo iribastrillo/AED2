@@ -35,6 +35,13 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
 
     @Override
     public boolean existe(T dato) {
+        Nodo aux = inicio;
+        while (aux != null) {
+            if (aux.dato.equals(dato)) {
+                return true;
+            }
+            aux = aux.siguiente;
+        }
         return false;
     }
 
@@ -76,7 +83,6 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
             System.out.println();
             return;
         }
-
         System.out.print(nodo.dato + " ");
         imprimirListaRecursivo(nodo.siguiente);
     }

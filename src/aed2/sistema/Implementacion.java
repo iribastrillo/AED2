@@ -99,7 +99,11 @@ public class Implementacion implements Sistema {
             return Retorno.error2("E2: El código de la estación no es válido.");
         }
         Estacion station = new Estacion(codigo, nombre);
+        if (stations.existe(station)) {
+            return Retorno.error4("E4: Ya existe una estación con ese código.");
+        }
         stations.insertar(station);
+
         return Retorno.ok();
     }
 

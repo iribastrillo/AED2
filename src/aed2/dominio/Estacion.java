@@ -1,7 +1,5 @@
 package aed2.dominio;
 
-import aed2.dominio.vo.Codigo;
-
 public class Estacion implements Comparable<Estacion> {
     private String codigo;
     private String nombre;
@@ -17,5 +15,11 @@ public class Estacion implements Comparable<Estacion> {
     @Override
     public String toString() {
         return "ESTACIÓN: " + nombre;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Estacion otro = (Estacion) obj;
+        return codigo.equals(otro.codigo);
     }
 }
