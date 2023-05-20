@@ -7,6 +7,9 @@ public class Estacion implements Comparable<Estacion> {
         this.codigo = codigo;
         this.nombre = nombre;
     }
+    public Estacion (String codigo) {
+        this.codigo = codigo;
+    }
     @Override
     public int compareTo(Estacion o) {
         return 0;

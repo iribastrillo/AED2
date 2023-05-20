@@ -126,6 +126,34 @@ public class Implementacion implements Sistema {
     public Retorno registrarConexion(String codigoEstacionOrigen, String codigoEstacionDestino,
                                      int identificadorConexion, double costo, double tiempo, double kilometros,
                                      Estado estadoDeLaConexion) {
+        if (costo  <= 0 || tiempo <= 0 || kilometros <= 0) {
+            return Retorno.error1 ("E1: Costo, tiempo y kilómetros deben ser mayores que 0.");
+        }
+        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate (codigoEstacionDestino)) {
+            return Retorno.error2 ("E2: El código de origen y destino no pueden ser vacíos.");
+        }
+        if (estadoDeLaConexion == null) {
+            return Retorno.error2 ("E2: El estado de la conexión no puede ser nulo.");
+        }
+        if (!Codigo.validate(codigoEstacionOrigen)) {
+            return Retorno.error3 ("E2: El código de origen no es válido.");
+        }
+        if (!Codigo.validate(codigoEstacionDestino)) {
+            return Retorno.error3 ("E2: El código de destino no es válido.");
+        }
+
+        Estacion origin = new Estacion(codigoEstacionOrigen);
+        Estacion destination = new Estacion(codigoEstacionDestino);
+
+        if (!stations.existe (origin)) {
+            return Retorno.error4("E4: No existe la estación de origen");
+        }
+
+        if (!stations.existe (destination)) {
+            return Retorno.error4("E4: No existe la estación de destino");
+        }
+
+
         return Retorno.noImplementada();
     }
     @Override
