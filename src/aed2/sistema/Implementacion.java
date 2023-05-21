@@ -203,11 +203,31 @@ public class Implementacion implements Sistema {
         if (stations.existe(station)) {
             return Retorno.error4("E4: Ya existe una estación con ese código.");
         }
-        
+
         return Retorno.noImplementada();
     }
     @Override
     public Retorno viajeCostoMinimoKilometros(String codigoEstacionOrigen, String codigoEstacionDestino) {
+        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate (codigoEstacionDestino)) {
+            return Retorno.error1 ("E2: El código de origen y destino no pueden ser vacíos.");
+        }
+        if (!NoVacio.validate(codigoEstacionDestino)) {
+            return Retorno.error2 ("E2: El código de destino no es válido.");
+        }
+        if (!Codigo.validate(codigoEstacionOrigen)) {
+            return Retorno.error2 ("E3: El código de origen no es válido.");
+        }
+
+        Estacion origin = new Estacion(codigoEstacionOrigen);
+        Estacion destination = new Estacion(codigoEstacionDestino);
+
+        if (!stations.existe (origin)) {
+            return Retorno.error4("E4: No existe la estación de origen");
+        }
+
+        if (!stations.existe (destination)) {
+            return Retorno.error5("E4: No existe la estación de destino");
+        }
         return Retorno.noImplementada();
     }
     @Override

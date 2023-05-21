@@ -1,5 +1,4 @@
 package aed2.estructuras;
-
 import aed2.dominio.Estacion;
 
 public class Grafo <T> implements IGrafo <T> {
@@ -29,7 +28,6 @@ public class Grafo <T> implements IGrafo <T> {
     public void addEdge(Vertex<T> origin, Vertex<T> destination, float weight) {
 
     }
-
     @Override
     public void removeVertex(Vertex<T> v) {
 
