@@ -24,7 +24,7 @@ public class Pasajero {
     }
     public Pasajero (String id, String nombre, int edad) {
         this.id = id;
-        this.nacionalidad = id.substring(0, 1);
+        this.nacionalidad = id.substring(0, 2);
         this.nro = Identificador.getNumber(id);
         this.nombre = nombre;
         this.edad = edad;
@@ -38,7 +38,7 @@ public class Pasajero {
 
     @Override
     public String toString() {
-        return "PASAJERO: " + id;
+        return id+";"+nombre+";"+edad+";"+nacionalidad;
     }
 
     public String getId() {

@@ -9,7 +9,6 @@ public class Main {
         Implementacion sistema = new Implementacion();
         System.out.println(sistema.inicializarSistema(6));
 
-
         System.out.println("----------TESTEO METODO registrarPasajero----------" + "\n");
 
         System.out.println(sistema.registrarPasajero("FR123.123#3", "Ignacio", 30));
@@ -39,6 +38,5 @@ public class Main {
         System.out.println(sistema.registrarEstacionDeTren("", "Niza"));
         System.out.println(sistema.registrarEstacionDeTren("AEA143", "MANCHESTER"));
         System.out.println(sistema.registrarEstacionDeTren("ZZZ258", "MONTPELLIER"));
-
     }
 }
