@@ -47,11 +47,12 @@ public class Implementacion implements Sistema {
 
     @Override
     public Retorno registrarPasajero(String identificador, String nombre, int edad) {
+        if (!NoVacio.validate(nombre) || !NoVacio.validate(identificador)) {
+            return Retorno.error1("E1: Alguno de los parametros  vacío.");
+        }
+
         if (!Identificador.validate(identificador)) {
             return Retorno.error2("E2: El identificador no es válido.");
-        }
-        if (!NoVacio.validate(nombre)) {
-            return Retorno.error1("E1: El nombre no puede ser vacío.");
         }
 
         Retorno existe = buscarPasajero(identificador);

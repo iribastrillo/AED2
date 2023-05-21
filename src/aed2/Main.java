@@ -16,6 +16,8 @@ public class Main {
         System.out.println(sistema.registrarPasajero("UK805.978#8", "Juan", 54));
         System.out.println(sistema.registrarPasajero("FR123.123#3", "Alicia", 35));
         System.out.println(sistema.registrarPasajero("DER23.12353", "Roberto", 42));
+        System.out.println(sistema.registrarPasajero("UK505.988#7", "", 42));
+        System.out.println(sistema.registrarPasajero("", "Federico", 42));
 
         System.out.println("\n" + "----------TESTEO METODO buscarPasajero----------" + "\n");
 
