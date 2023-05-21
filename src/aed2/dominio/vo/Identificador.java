@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Identificador {
-    public static boolean validate (String valor) {
+    public static boolean validate(String valor) {
         Pattern pattern_one = Pattern.compile("^(FR|DE|UK|ES|OT){1}\\d{1}.[0-9]{3}.[0-9]{3}#\\d{1}$");
         Pattern pattern_two = Pattern.compile("^(FR|DE|UK|ES|OT){1}\\d{3}.[0-9]{3}#\\d{1}$");
         Matcher m1 = pattern_one.matcher(valor);
@@ -12,13 +12,19 @@ public class Identificador {
         boolean found = m1.find() || m2.find();
         return found;
     }
+
     public static int getNumber(String input) {
-        StringBuilder numberBuilder = new StringBuilder();
-        for (char c : input.toCharArray()) {
-            if (Character.isDigit(c)) {
-                numberBuilder.append(c);
+        int number = 0;
+
+        int endIndex = input.indexOf('#');
+        if (endIndex != -1) {
+            String numberString = input.substring(0, endIndex);
+            numberString = numberString.replaceAll("[^\\d]", "");
+            if (!numberString.isEmpty()) {
+                number = Integer.parseInt(numberString);
             }
         }
-        return Integer.parseInt(numberBuilder.toString());
+
+        return number;
     }
 }

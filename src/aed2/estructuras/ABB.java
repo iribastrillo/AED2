@@ -6,6 +6,8 @@ public class ABB {
 
     private Nodo raiz;
 
+    private int contador = 0;
+
     public Nodo getRaiz() {
         return raiz;
     }
@@ -43,6 +45,7 @@ public class ABB {
     }
 
     public Pasajero buscar(Pasajero pasajero) {
+        contador = 0;
         return buscarRecursivo(raiz, pasajero);
     }
 
@@ -50,7 +53,11 @@ public class ABB {
         if (nodo == null) {
             return null;
         }
+
+        contador++;
+
         if (pasajero.equals(nodo.pasajero)) {
+            nodo.pasajero.setTiempoDeBusqueda(contador);
             return nodo.pasajero;
         } else if (pasajero.getNro() < nodo.pasajero.getNro()) {
             return buscarRecursivo(nodo.izquierdo, pasajero);
@@ -98,6 +105,7 @@ public class ABB {
     public void imprimirEnOrdenDescendente() {
         imprimirEnOrdenDescendente(raiz);
     }
+
     private void imprimirEnOrdenDescendente(Nodo nodo) {
         if (nodo != null) {
             imprimirEnOrdenDescendente(nodo.izquierdo);
@@ -105,9 +113,11 @@ public class ABB {
             imprimirEnOrdenDescendente(nodo.derecho);
         }
     }
+
     public void imprimirEnOrdenAscendente() {
         imprimirEnOrdenAscedente(raiz);
     }
+
     private void imprimirEnOrdenAscedente(Nodo nodo) {
         if (nodo != null) {
             imprimirEnOrdenDescendente(nodo.derecho);
@@ -115,4 +125,18 @@ public class ABB {
             imprimirEnOrdenDescendente(nodo.izquierdo);
         }
     }
+
+//    private void imprimirPorNacionalidad(Nodo nodo) {
+//        imprimirPorNacionalidadRecurisvo(nodo.pasajero.getId());
+//    }
+//
+//    private void imprimirPorNacionalidadRecurisvo(Nodo nodo) {
+//        if (nodo != null) {
+//            imprimirEnOrdenDescendente(nodo.derecho);
+//            System.out.print(nodo.pasajero + "\n");
+//            imprimirEnOrdenDescendente(nodo.izquierdo);
+//        }
+//    }
+
+
 }

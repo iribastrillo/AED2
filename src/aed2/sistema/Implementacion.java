@@ -11,6 +11,11 @@ import aed2.interfaz.Sistema;
 
 public class Implementacion implements Sistema {
     private int maxEstaciones;
+    private int cantidadActual;
+    private ABB abbPasajeros;
+    private Lista<Estacion> stations;
+
+    private int cantidadEstacionesRegistradas = 0;
 
     public int getCantidadActual() {
         return cantidadActual;
@@ -20,9 +25,6 @@ public class Implementacion implements Sistema {
         this.cantidadActual = cantidadActual;
     }
 
-    private int cantidadActual;
-    private ABB abbPasajeros;
-    private Lista<Estacion> stations;
     public int getMaxEstaciones() {
         return maxEstaciones;
     }
@@ -30,6 +32,7 @@ public class Implementacion implements Sistema {
     public void setMaxEstaciones(int maxEstaciones) {
         this.maxEstaciones = maxEstaciones;
     }
+
     @Override
     public Retorno inicializarSistema(int maxEstaciones) {
         if (maxEstaciones <= 5) {
@@ -41,6 +44,7 @@ public class Implementacion implements Sistema {
         stations = new Lista<Estacion>();
         return Retorno.ok();
     }
+
     @Override
     public Retorno registrarPasajero(String identificador, String nombre, int edad) {
         if (!Identificador.validate(identificador)) {
@@ -50,13 +54,13 @@ public class Implementacion implements Sistema {
             return Retorno.error1("E1: El nombre no puede ser vacío.");
         }
 
-        Pasajero existe = new Pasajero (identificador);
+        Retorno existe = buscarPasajero(identificador);
 
-        if (existe == null) {
+        if (existe.isOk()) {
             return Retorno.error3("E3: El pasajero ya está registrado.");
         }
 
-        Pasajero pasajero = new Pasajero (identificador, nombre, edad);
+        Pasajero pasajero = new Pasajero(identificador, nombre, edad);
         abbPasajeros.insertar(pasajero);
         return Retorno.ok();
     }
@@ -72,13 +76,15 @@ public class Implementacion implements Sistema {
             return Retorno.error1("E1: El identificador no es válido.");
         }
 
-        Pasajero existe = abbPasajeros.buscar(new Pasajero (identificador));
+        Pasajero existe = abbPasajeros.buscar(new Pasajero(identificador));
 
         if (existe == null) {
             return Retorno.error2("E2: No hay un pasajero registrado con ese identificador.");
         }
 
-        return Retorno.ok(existe.toString());
+        String message = "Nombre: " + existe.getNombre() + " | " + "Pasaporte: " + existe.getId() + " | " + "Edad: " + existe.getEdad();
+
+        return Retorno.ok(existe.getTiempoDeBusqueda(), message);
     }
 
     @Override
@@ -95,11 +101,16 @@ public class Implementacion implements Sistema {
 
     @Override
     public Retorno listarPasajerosPorNacionalidad(Nacionalidad nacionalidad) {
+
         return Retorno.noImplementada();
     }
 
     @Override
     public Retorno registrarEstacionDeTren(String codigo, String nombre) {
+        if (getCantidadActual() == getMaxEstaciones()) {
+            return Retorno.error1("E1: Ya se registró el máximo permitido de estaciones");
+        }
+
         if (!NoVacio.validate(nombre)) {
             return Retorno.error2("E2: El nombre de la estación no puede ser vacío.");
         }
@@ -109,15 +120,15 @@ public class Implementacion implements Sistema {
         if (!Codigo.validate(codigo)) {
             return Retorno.error3("E3: El código de la estación no es válido.");
         }
-        if (getCantidadActual() == getMaxEstaciones()) {
-            return  Retorno.error1 ("E1: Ya se registró el máximo permitido de estaciones");
-        }
+
 
         Estacion station = new Estacion(codigo, nombre);
 
         if (stations.existe(station)) {
             return Retorno.error4("E4: Ya existe una estación con ese código.");
         }
+        cantidadEstacionesRegistradas++;
+        setCantidadActual(cantidadEstacionesRegistradas);
         stations.insertar(station);
         return Retorno.ok();
     }
@@ -126,50 +137,54 @@ public class Implementacion implements Sistema {
     public Retorno registrarConexion(String codigoEstacionOrigen, String codigoEstacionDestino,
                                      int identificadorConexion, double costo, double tiempo, double kilometros,
                                      Estado estadoDeLaConexion) {
-        if (costo  <= 0 || tiempo <= 0 || kilometros <= 0) {
-            return Retorno.error1 ("E1: Costo, tiempo y kilómetros deben ser mayores que 0.");
+        if (costo <= 0 || tiempo <= 0 || kilometros <= 0) {
+            return Retorno.error1("E1: Costo, tiempo y kilómetros deben ser mayores que 0.");
         }
-        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate (codigoEstacionDestino)) {
-            return Retorno.error2 ("E2: El código de origen y destino no pueden ser vacíos.");
+        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate(codigoEstacionDestino)) {
+            return Retorno.error2("E2: El código de origen y destino no pueden ser vacíos.");
         }
         if (estadoDeLaConexion == null) {
-            return Retorno.error2 ("E2: El estado de la conexión no puede ser nulo.");
+            return Retorno.error2("E2: El estado de la conexión no puede ser nulo.");
         }
         if (!Codigo.validate(codigoEstacionOrigen)) {
-            return Retorno.error3 ("E2: El código de origen no es válido.");
+            return Retorno.error3("E2: El código de origen no es válido.");
         }
         if (!Codigo.validate(codigoEstacionDestino)) {
-            return Retorno.error3 ("E2: El código de destino no es válido.");
+            return Retorno.error3("E2: El código de destino no es válido.");
         }
 
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-        if (!stations.existe (origin)) {
+        if (!stations.existe(origin)) {
             return Retorno.error4("E4: No existe la estación de origen");
         }
 
-        if (!stations.existe (destination)) {
+        if (!stations.existe(destination)) {
             return Retorno.error4("E4: No existe la estación de destino");
         }
 
 
         return Retorno.noImplementada();
     }
+
     @Override
     public Retorno actualizarCamino(String codigoEstacionOrigen, String codigoEstacionDestino,
                                     int identificadorConexion, double costo, double tiempo,
                                     double kilometros, Estado estadoDelCamino) {
         return Retorno.noImplementada();
     }
+
     @Override
     public Retorno listadoEstacionesCantTrasbordos(String codigo, int cantidad) {
         return Retorno.noImplementada();
     }
+
     @Override
     public Retorno viajeCostoMinimoKilometros(String codigoEstacionOrigen, String codigoEstacionDestino) {
         return Retorno.noImplementada();
     }
+
     @Override
     public Retorno viajeCostoMinimoEuros(String codigoEstacionOrigen, String codigoEstacionDestino) {
         return null;

@@ -6,8 +6,18 @@ public class Pasajero {
     private String id;
     private int nro;
     private String nombre;
+
+    public int getTiempoDeBusqueda() {
+        return tiempoDeBusqueda;
+    }
+
+    public void setTiempoDeBusqueda(int tiempoDeBusqueda) {
+        this.tiempoDeBusqueda = tiempoDeBusqueda;
+    }
+
     private String nacionalidad;
     private int edad;
+    private int tiempoDeBusqueda;
     public Pasajero (String id) {
         this.id = id;
         this.nro = Identificador.getNumber(id);
