@@ -105,11 +105,20 @@ public class ABB {
 
     public String filtrarPasajeros(Consulta consulta) {
         String valorString = filtrarPasajeros(raiz, consulta);
-        return valorString != "" ? valorString.substring(0, valorString.length()-1) : valorString;
+        return valorString.length() > 1 ? valorString.substring(0, valorString.length()-1) : valorString;
     }
 
     private String filtrarPasajeros(Nodo nodo, Consulta consulta) {
-
+        if (nodo != null) {
+            if (nodo.derecho == null && nodo.izquierdo == null) {
+                return filtrar(nodo.pasajero, consulta.getRaiz()) ? nodo.pasajero + "|" : "";
+            } else {
+                return filtrar(nodo.pasajero, consulta.getRaiz()) ?
+                        nodo.pasajero + "|" + filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta) :
+                        filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta);
+            }
+        }
+        return "";
     }
 
     private boolean filtrar(Pasajero p, Consulta.NodoConsulta nodo) {
@@ -128,7 +137,7 @@ public class ABB {
 
     public String imprimirEnOrdenDescendente() {
         String valorString = imprimirEnOrdenDescendente(raiz);
-        return valorString != "" ? valorString.substring(0, valorString.length()-1) : valorString;
+        return valorString.length() > 1 ? valorString.substring(0, valorString.length()-1) : valorString;
     }
 
     private String imprimirEnOrdenDescendente(Nodo nodo) {
@@ -148,7 +157,7 @@ public class ABB {
 
     public String imprimirEnOrdenAscendente() {
         String valorString = imprimirEnOrdenAscedente(raiz);
-        return valorString != "" ? valorString.substring(0, valorString.length()-1) : valorString;
+        return valorString.length() > 1 ? valorString.substring(0, valorString.length()-1) : valorString;
     }
 
     private String imprimirEnOrdenAscedente(Nodo nodo) {

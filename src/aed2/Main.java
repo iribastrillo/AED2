@@ -2,6 +2,7 @@ package aed2;
 
 import aed2.dominio.Estacion;
 import aed2.dominio.Pasajero;
+import aed2.interfaz.Consulta;
 import aed2.sistema.Implementacion;
 
 public class Main {
@@ -40,5 +41,10 @@ public class Main {
         System.out.println(sistema.registrarEstacionDeTren("", "Niza"));
         System.out.println(sistema.registrarEstacionDeTren("AEA143", "MANCHESTER"));
         System.out.println(sistema.registrarEstacionDeTren("ZZZ258", "MONTPELLIER"));
+
+
+        Consulta consulta = Consulta.fromString("[nombre='Ignacio' AND edad > 10]");
+        System.out.println("filtrar");
+        System.out.println(sistema.filtrarPasajeros(consulta));
     }
 }
