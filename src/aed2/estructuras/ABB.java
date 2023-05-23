@@ -1,6 +1,7 @@
 package aed2.estructuras;
 
 import aed2.dominio.Pasajero;
+import aed2.interfaz.Consulta;
 
 public class ABB {
 
@@ -102,9 +103,32 @@ public class ABB {
         return 0;
     }
 
+    public String filtrarPasajeros(Consulta consulta) {
+        String valorString = filtrarPasajeros(raiz, consulta);
+        return valorString != "" ? valorString.substring(0, valorString.length()-1) : valorString;
+    }
+
+    private String filtrarPasajeros(Nodo nodo, Consulta consulta) {
+
+    }
+
+    private boolean filtrar(Pasajero p, Consulta.NodoConsulta nodo) {
+        if(nodo.getTipoNodoConsulta().equals(Consulta.TipoNodoConsulta.EdadMayor)) {
+            return p.getEdad()> nodo.getValorInt();
+        } else if (nodo.getTipoNodoConsulta().equals(Consulta.TipoNodoConsulta.NombreIgual)) {
+            return p.getNombre().equals(nodo.getValorString());
+        } else if (nodo.getTipoNodoConsulta().equals(Consulta.TipoNodoConsulta.Nacionalidad)) {
+            return p.getNacionalidad().equals(nodo.getValorNacionalidad());
+        } else if (nodo.getTipoNodoConsulta().equals(Consulta.TipoNodoConsulta.And)) {
+            return filtrar(p, nodo.getIzq()) && filtrar(p, nodo.getDer());
+        } else {
+            return filtrar(p, nodo.getIzq()) || filtrar(p, nodo.getDer());
+        }
+    }
+
     public String imprimirEnOrdenDescendente() {
         String valorString = imprimirEnOrdenDescendente(raiz);
-        return valorString.substring(0, valorString.length()-1);
+        return valorString != "" ? valorString.substring(0, valorString.length()-1) : valorString;
     }
 
     private String imprimirEnOrdenDescendente(Nodo nodo) {
@@ -124,7 +148,7 @@ public class ABB {
 
     public String imprimirEnOrdenAscendente() {
         String valorString = imprimirEnOrdenAscedente(raiz);
-        return valorString.substring(0, valorString.length()-1);
+        return valorString != "" ? valorString.substring(0, valorString.length()-1) : valorString;
     }
 
     private String imprimirEnOrdenAscedente(Nodo nodo) {

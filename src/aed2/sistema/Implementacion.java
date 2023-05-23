@@ -68,7 +68,9 @@ public class Implementacion implements Sistema {
 
     @Override
     public Retorno filtrarPasajeros(Consulta consulta) {
-        return Retorno.noImplementada();
+        return consulta == null ?
+                Retorno.error1("Consulta no válida") :
+                Retorno.ok(abbPasajeros.filtrarPasajeros(consulta));
     }
 
     @Override

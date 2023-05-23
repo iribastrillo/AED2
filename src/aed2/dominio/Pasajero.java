@@ -41,6 +41,10 @@ public class Pasajero {
         return id+";"+nombre+";"+edad+";"+nacionalidad;
     }
 
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
     public String getId() {
         return id;
     }
