@@ -52,8 +52,7 @@ public class Main {
 
         System.out.println("\n" + "----------TESTEO METODO listarPasajerosPorNacionalidad----------" + "\n");
 
-        System.out.println(sistema.listarPasajerosPorNacionalidad("DE"));
+        System.out.println(sistema.listarPasajerosPorNacionalidad("ES"));
         //HAY PROBLEMAS, VER !
-
     }
 }

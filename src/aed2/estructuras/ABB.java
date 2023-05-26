@@ -198,22 +198,17 @@ public class ABB {
     }
 
     private String imprimirPorNacionalidadRecurisvo(Nodo nodo, String codigoNacionalidad, StringBuilder mensaje) {
-
         if (nodo != null) {
             String nacionalidad = nodo.getPasajero().getId().substring(0, 2);
 
             if (nacionalidad.equals(codigoNacionalidad)) {
-                imprimirPorNacionalidadRecurisvo(nodo.getIzquierdo(), codigoNacionalidad, mensaje);
                 mensaje.append(nodo.getPasajero().getId() + "|"
                         + nodo.getPasajero().getNombre() + "|"
                         + nodo.getPasajero().getEdad() + "|"
                         + nacionalidad);
-                imprimirPorNacionalidadRecurisvo(nodo.getDerecho(), codigoNacionalidad, mensaje);
-            } else if (nacionalidad.compareTo(codigoNacionalidad) > 0) {
-                imprimirPorNacionalidadRecurisvo(nodo.getIzquierdo(), codigoNacionalidad, mensaje);
-            } else {
-                imprimirPorNacionalidadRecurisvo(nodo.getDerecho(), codigoNacionalidad, mensaje);
             }
+            imprimirPorNacionalidadRecurisvo(nodo.getIzquierdo(), codigoNacionalidad, mensaje);
+            imprimirPorNacionalidadRecurisvo(nodo.getDerecho(), codigoNacionalidad, mensaje);
         }
         return mensaje.toString();
     }
