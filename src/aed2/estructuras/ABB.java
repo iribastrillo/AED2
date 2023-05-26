@@ -3,6 +3,9 @@ package aed2.estructuras;
 import aed2.dominio.Pasajero;
 import aed2.interfaz.Consulta;
 
+import java.lang.StringBuilder;
+
+
 public class ABB {
 
     private Nodo raiz;
@@ -27,6 +30,19 @@ public class ABB {
             this.izquierdo = null;
             this.derecho = null;
         }
+
+        public Nodo getDerecho() {
+            return derecho;
+        }
+
+        public Nodo getIzquierdo() {
+            return izquierdo;
+        }
+
+        public Pasajero getPasajero() {
+            return pasajero;
+        }
+
     }
 
     public void insertar(Pasajero pasajero) {
@@ -175,15 +191,30 @@ public class ABB {
         return "";
     }
 
-//    private void imprimirPorNacionalidad(Nodo nodo) {
-//        imprimirPorNacionalidadRecurisvo(nodo.pasajero.getId());
-//    }
-//
-//    private void imprimirPorNacionalidadRecurisvo(Nodo nodo) {
-//        if (nodo != null) {
-//            imprimirEnOrdenDescendente(nodo.derecho);
-//            System.out.print(nodo.pasajero + "\n");
-//            imprimirEnOrdenDescendente(nodo.izquierdo);
-//        }
-//    }
+    public String imprimirPorNacionalidad(String codigoNacionalidad) {
+        StringBuilder mensaje = new StringBuilder();
+        imprimirPorNacionalidadRecurisvo(this.raiz, codigoNacionalidad, mensaje);
+        return mensaje.toString();
+    }
+
+    private String imprimirPorNacionalidadRecurisvo(Nodo nodo, String codigoNacionalidad, StringBuilder mensaje) {
+
+        if (nodo != null) {
+            String nacionalidad = nodo.getPasajero().getId().substring(0, 2);
+
+            if (nacionalidad.equals(codigoNacionalidad)) {
+                imprimirPorNacionalidadRecurisvo(nodo.getIzquierdo(), codigoNacionalidad, mensaje);
+                mensaje.append(nodo.getPasajero().getId() + "|"
+                        + nodo.getPasajero().getNombre() + "|"
+                        + nodo.getPasajero().getEdad() + "|"
+                        + nacionalidad);
+                imprimirPorNacionalidadRecurisvo(nodo.getDerecho(), codigoNacionalidad, mensaje);
+            } else if (nacionalidad.compareTo(codigoNacionalidad) > 0) {
+                imprimirPorNacionalidadRecurisvo(nodo.getIzquierdo(), codigoNacionalidad, mensaje);
+            } else {
+                imprimirPorNacionalidadRecurisvo(nodo.getDerecho(), codigoNacionalidad, mensaje);
+            }
+        }
+        return mensaje.toString();
+    }
 }

@@ -50,7 +50,7 @@ public interface Sistema {
      * @param nacionalidad La nacionalidad de un pasajero.
      * @return Los pasajeros de un tipo especifico.
      */
-    Retorno listarPasajerosPorNacionalidad(Nacionalidad nacionalidad);
+    Retorno listarPasajerosPorNacionalidad(String nacionalidad);
 
     /**
      * @param codigo El codigo de la estacion a registrar.

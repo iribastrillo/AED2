@@ -8,6 +8,7 @@ import aed2.estructuras.Lista;
 import aed2.interfaz.Consulta;
 import aed2.interfaz.Retorno;
 import aed2.interfaz.Sistema;
+import aed2.dominio.vo.Nacionalidad;
 
 public class Implementacion implements Sistema {
     private int maxEstaciones;
@@ -101,9 +102,16 @@ public class Implementacion implements Sistema {
     }
 
     @Override
-    public Retorno listarPasajerosPorNacionalidad(Nacionalidad nacionalidad) {
+    public Retorno listarPasajerosPorNacionalidad(String nacionalidad) {
+        Nacionalidad isValid = Nacionalidad.fromCodigo(nacionalidad);
+        if (nacionalidad == null || nacionalidad.replaceAll("\\s", "").length() == 0) {
+            return Retorno.error1("Falta ingresar una nacionalidad, las posibilidades son: FR - DE - ES - UK - OT");
+        } else if (isValid != null){
+            return Retorno.ok(abbPasajeros.imprimirPorNacionalidad(nacionalidad));
+        } else{
+            return Retorno.error2("Debe ingresar una nacionalidad valida !");
+        }
 
-        return Retorno.noImplementada();
     }
 
     @Override
@@ -161,7 +169,7 @@ public class Implementacion implements Sistema {
             return Retorno.error4("E4: No existe la estación de origen");
         }
 
-        if (!stations.existe (destination)) {
+        if (!stations.existe(destination)) {
             return Retorno.error5("E4: No existe la estación de destino");
         }
         return Retorno.noImplementada();
@@ -172,29 +180,29 @@ public class Implementacion implements Sistema {
                                     int identificadorConexion, double costo, double tiempo,
                                     double kilometros, Estado estadoDelCamino) {
         if (costo <= 0 || tiempo <= 0 || kilometros <= 0) {
-            return Retorno.error1 ("E1: Costo, tiempo y kilómetros deben ser mayores que 0.");
+            return Retorno.error1("E1: Costo, tiempo y kilómetros deben ser mayores que 0.");
         }
-        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate (codigoEstacionDestino)) {
-            return Retorno.error2 ("E2: El código de origen y destino no pueden ser vacíos.");
+        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate(codigoEstacionDestino)) {
+            return Retorno.error2("E2: El código de origen y destino no pueden ser vacíos.");
         }
         if (estadoDelCamino == null) {
-            return Retorno.error2 ("E2: El estado de la conexión no puede ser nulo.");
+            return Retorno.error2("E2: El estado de la conexión no puede ser nulo.");
         }
         if (!Codigo.validate(codigoEstacionOrigen)) {
-            return Retorno.error3 ("E2: El código de origen no es válido.");
+            return Retorno.error3("E2: El código de origen no es válido.");
         }
         if (!Codigo.validate(codigoEstacionDestino)) {
-            return Retorno.error3 ("E2: El código de destino no es válido.");
+            return Retorno.error3("E2: El código de destino no es válido.");
         }
 
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-        if (!stations.existe (origin)) {
+        if (!stations.existe(origin)) {
             return Retorno.error4("E4: No existe la estación de origen");
         }
 
-        if (!stations.existe (destination)) {
+        if (!stations.existe(destination)) {
             return Retorno.error5("E4: No existe la estación de destino");
         }
         return Retorno.noImplementada();
@@ -203,13 +211,13 @@ public class Implementacion implements Sistema {
     @Override
     public Retorno listadoEstacionesCantTrasbordos(String codigo, int cantidad) {
         if (cantidad < 0) {
-            return Retorno.error1 ("E1: La cantidad no puede ser menor a cero.");
+            return Retorno.error1("E1: La cantidad no puede ser menor a cero.");
         }
         if (!NoVacio.validate(codigo)) {
-            return Retorno.error2 ("E2: El código no puede ser vacío.");
+            return Retorno.error2("E2: El código no puede ser vacío.");
         }
         if (!Codigo.validate(codigo)) {
-            return Retorno.error3 ("E3: El código de la estación no es válido.");
+            return Retorno.error3("E3: El código de la estación no es válido.");
         }
 
         Estacion station = new Estacion(codigo);
@@ -223,24 +231,24 @@ public class Implementacion implements Sistema {
 
     @Override
     public Retorno viajeCostoMinimoKilometros(String codigoEstacionOrigen, String codigoEstacionDestino) {
-        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate (codigoEstacionDestino)) {
-            return Retorno.error1 ("E2: El código de origen y destino no pueden ser vacíos.");
+        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate(codigoEstacionDestino)) {
+            return Retorno.error1("E2: El código de origen y destino no pueden ser vacíos.");
         }
         if (!NoVacio.validate(codigoEstacionDestino)) {
-            return Retorno.error2 ("E2: El código de destino no es válido.");
+            return Retorno.error2("E2: El código de destino no es válido.");
         }
         if (!Codigo.validate(codigoEstacionOrigen)) {
-            return Retorno.error2 ("E3: El código de origen no es válido.");
+            return Retorno.error2("E3: El código de origen no es válido.");
         }
 
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-        if (!stations.existe (origin)) {
+        if (!stations.existe(origin)) {
             return Retorno.error4("E4: No existe la estación de origen");
         }
 
-        if (!stations.existe (destination)) {
+        if (!stations.existe(destination)) {
             return Retorno.error5("E4: No existe la estación de destino");
         }
         return Retorno.noImplementada();

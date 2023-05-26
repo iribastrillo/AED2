@@ -13,11 +13,13 @@ public class Main {
         System.out.println("----------TESTEO METODO registrarPasajero----------" + "\n");
 
         System.out.println(sistema.registrarPasajero("FR123.123#3", "Ignacio", 30));
+        System.out.println(sistema.registrarPasajero("FR524.155#1", "Jimena", 29));
         System.out.println(sistema.registrarPasajero("DE724.187#1", "Pedro", 28));
         System.out.println(sistema.registrarPasajero("UK805.978#8", "Juan", 54));
         System.out.println(sistema.registrarPasajero("FR123.123#3", "Alicia", 35));
         System.out.println(sistema.registrarPasajero("DER23.12353", "Roberto", 42));
-        System.out.println(sistema.registrarPasajero("UK505.988#7", "", 42));
+        System.out.println(sistema.registrarPasajero("UK505.988#7", "pepe", 42));
+        System.out.println(sistema.registrarPasajero("UK400.111#2", "Viviana", 42));
         System.out.println(sistema.registrarPasajero("", "Federico", 42));
 
         System.out.println("\n" + "----------TESTEO METODO buscarPasajero----------" + "\n");
@@ -42,9 +44,16 @@ public class Main {
         System.out.println(sistema.registrarEstacionDeTren("AEA143", "MANCHESTER"));
         System.out.println(sistema.registrarEstacionDeTren("ZZZ258", "MONTPELLIER"));
 
+        System.out.println("\n" + "----------TESTEO METODO filtrarPasajeros----------" + "\n");
 
         Consulta consulta = Consulta.fromString("[nombre='Ignacio' AND edad > 10]");
         System.out.println("filtrar");
         System.out.println(sistema.filtrarPasajeros(consulta));
+
+        System.out.println("\n" + "----------TESTEO METODO listarPasajerosPorNacionalidad----------" + "\n");
+
+        System.out.println(sistema.listarPasajerosPorNacionalidad("DE"));
+        //HAY PROBLEMAS, VER !
+
     }
 }
