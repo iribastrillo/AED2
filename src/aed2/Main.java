@@ -61,7 +61,10 @@ public class Main {
                 1, 50, 50, 50, Estado.BUENO));
         System.out.println(sistema.registrarConexion("MMM123", "WWW123",
                 1, 50, 50, 50, Estado.BUENO));
-        System.out.println(sistema.getConexiones().sonAdyacentes(new Estacion("FFF123"), new Estacion("MMM123")));
+        System.out.println(sistema.actualizarCamino("MMM123", "FFF123",
+                1, 30, 30, 30, Estado.BUENO));
+        System.out.println(sistema.actualizarCamino("FFF123", "MMM123",
+                1, 30, 30, 30, Estado.BUENO));
 
     }
 }

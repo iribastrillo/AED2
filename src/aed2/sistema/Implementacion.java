@@ -183,7 +183,6 @@ public class Implementacion implements Sistema {
         }
 
         conexiones.agregarArista(destination, origin, costo, kilometros);
-
         return Retorno.ok();
     }
 
@@ -194,7 +193,7 @@ public class Implementacion implements Sistema {
         if (costo <= 0 || tiempo <= 0 || kilometros <= 0) {
             return Retorno.error1("E1: Costo, tiempo y kilómetros deben ser mayores que 0.");
         }
-        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate(codigoEstacionDestino)) {
+        if (!NoVacio.validate(codigoEstacionOrigen) || !NoVacio.validate(codigoEstacionDestino)) {
             return Retorno.error2("E2: El código de origen y destino no pueden ser vacíos.");
         }
         if (estadoDelCamino == null) {
@@ -210,14 +209,20 @@ public class Implementacion implements Sistema {
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-//        if (!stations.existe(origin)) {
-//            return Retorno.error4("E4: No existe la estación de origen");
-//        }
-//
-//        if (!stations.existe(destination)) {
-//            return Retorno.error5("E4: No existe la estación de destino");
-//        }
-        return Retorno.noImplementada();
+        if (!this.conexiones.existeVertice(origin)) {
+            return Retorno.error4("E4: No existe la estación de origen.");
+        }
+
+        if (!this.conexiones.existeVertice(destination)) {
+            return Retorno.error5("E4: No existe la estación de destino.");
+        }
+
+        if (this.conexiones.sonAdyacentes(origin, destination)) {
+            conexiones.agregarArista(destination, origin, costo, kilometros);
+            return Retorno.ok();
+        } else {
+            return Retorno.error6("E6: No existe la conexión entre el origen y el destino.");
+        }
     }
 
     @Override

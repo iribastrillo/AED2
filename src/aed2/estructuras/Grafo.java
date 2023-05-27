@@ -2,8 +2,6 @@ package aed2.estructuras;
 
 import aed2.dominio.Estacion;
 
-import java.util.Objects;
-
 public class Grafo implements IGrafo {
     private final int cantMaxVertices;
     private int cantVertices;
@@ -93,8 +91,8 @@ public class Grafo implements IGrafo {
 
     @Override
     public boolean sonAdyacentes(Estacion a, Estacion b) {
-        int obtenerPosOrigen = obtenerPos(a);
-        int obtenerPosDestino = obtenerPos(b);
+        int obtenerPosOrigen = obtenerPos(b);
+        int obtenerPosDestino = obtenerPos(a);
         if (obtenerPosOrigen >= 0 && obtenerPosDestino >= 0) {
             return matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino].isExiste();
         } else {
