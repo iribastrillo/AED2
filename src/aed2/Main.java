@@ -47,7 +47,6 @@ public class Main {
         System.out.println("\n" + "----------TESTEO METODO filtrarPasajeros----------" + "\n");
 
         Consulta consulta = Consulta.fromString("[nombre='Ignacio' AND edad > 10]");
-        System.out.println("filtrar");
         System.out.println(sistema.filtrarPasajeros(consulta));
 
         System.out.println("\n" + "----------TESTEO METODO listarPasajerosPorNacionalidad----------" + "\n");
@@ -56,10 +55,13 @@ public class Main {
 
         System.out.println("\n" + "----------TESTEO METODO registrarConexion ----------" + "\n");
 
-
         System.out.println(sistema.registrarConexion("MMM123", "FFF123",
                 1, 50, 50, 50, Estado.BUENO));
-        System.out.println(sistema.getConexiones().sonAdyacentes(new Estacion("MMM123"), new Estacion("FFF123")));
+        System.out.println(sistema.registrarConexion("RRR123", "FFF123",
+                1, 50, 50, 50, Estado.BUENO));
+        System.out.println(sistema.registrarConexion("MMM123", "WWW123",
+                1, 50, 50, 50, Estado.BUENO));
+        System.out.println(sistema.getConexiones().sonAdyacentes(new Estacion("FFF123"), new Estacion("MMM123")));
 
     }
 }

@@ -174,13 +174,13 @@ public class Implementacion implements Sistema {
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-//        if (!stations.existe(origin)) {
-//            return Retorno.error4("E4: No existe la estación de origen.");
-//        }
-//
-//        if (!stations.existe(destination)) {
-//            return Retorno.error5("E4: No existe la estación de destino.");
-//        }
+        if (!this.conexiones.existeVertice(origin)) {
+            return Retorno.error4("E4: No existe la estación de origen.");
+        }
+
+        if (!this.conexiones.existeVertice(destination)) {
+            return Retorno.error5("E4: No existe la estación de destino.");
+        }
 
         conexiones.agregarArista(destination, origin, costo, kilometros);
 
