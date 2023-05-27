@@ -2,6 +2,8 @@ package aed2.estructuras;
 
 import aed2.dominio.Estacion;
 
+import java.text.DecimalFormat;
+
 public class Grafo implements IGrafo {
     private final int cantMaxVertices;
     private int cantVertices;
@@ -113,6 +115,47 @@ public class Grafo implements IGrafo {
         }
         return verticesAdy;
     }
+    @Override
+    public void imprimirGrafo() {
+
+        System.out.println("Información del Grafo:");
+        System.out.println("Cantidad máxima de vértices: " + cantMaxVertices);
+        System.out.println("Es dirigido: " + esDirigido);
+        System.out.println("Matriz de adyacencia:");
+        DecimalFormat df = new DecimalFormat("0");
+        // Imprimir encabezado de columnas
+        System.out.print("   ");
+        for (int i = 0; i < cantMaxVertices; i++) {
+            System.out.print(i + "  ");
+        }
+        System.out.println();
+
+        // Imprimir filas y valores de la matriz de adyacencia
+        for (int i = 0; i < cantMaxVertices; i++) {
+            System.out.print(i + "  ");
+            for (int j = 0; j < cantMaxVertices; j++) {
+                Arista arista = matrizAdyacencia[i][j];
+                if (arista != null) {
+                    System.out.print(df.format(arista.getDistancia()) + "  ");
+                } else {
+                    System.out.print("0  ");
+                }
+            }
+            System.out.println();
+        }
+
+        System.out.println("Vértices:");
+        for (int i = 0; i < cantMaxVertices; i++) {
+            Vertice vertice = vertices[i];
+            if (vertice != null) {
+                System.out.println(i + ": " + vertice.getNombre());
+            }
+        }
+    }
+
+
+
+
 
 
     @Override
