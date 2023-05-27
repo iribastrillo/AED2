@@ -182,7 +182,7 @@ public class Implementacion implements Sistema {
             return Retorno.error5("E4: No existe la estación de destino.");
         }
 
-        conexiones.agregarArista(destination, origin, costo, kilometros);
+        conexiones.agregarArista(origin, destination, costo, kilometros);
         return Retorno.ok();
     }
 
@@ -239,11 +239,13 @@ public class Implementacion implements Sistema {
 
         Estacion station = new Estacion(codigo);
 
-//        if (stations.existe(station)) {
-//            return Retorno.error4("E4: Ya existe una estación con ese código.");
-//        }
+        if (!this.conexiones.existeVertice(station)) {
+            return Retorno.error4("E4: No existe la estación de origen.");
+        }
 
-        return Retorno.noImplementada();
+        conexiones.bfsCantidadDeTrasbordos(codigo, cantidad).imprimirLista();
+
+        return Retorno.ok();
     }
 
     @Override

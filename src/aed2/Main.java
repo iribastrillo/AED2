@@ -62,22 +62,28 @@ public class Main {
 
         System.out.println(sistema.registrarConexion("MMM123", "FFF123",
                 1, 50, 50, 50, Estado.BUENO));
+        System.out.println(sistema.registrarConexion("FFF123", "AAA143",
+                2, 100, 100, 200, Estado.BUENO));
         System.out.println(sistema.registrarConexion("RRR123", "FFF123",
-                1, 50, 50, 50, Estado.BUENO));
+                3, 50, 50, 50, Estado.BUENO));
         System.out.println(sistema.registrarConexion("MMM123", "WWW123",
-                1, 50, 50, 50, Estado.BUENO));
+                4, 50, 50, 50, Estado.BUENO));
         System.out.println(sistema.actualizarCamino("MMM123", "FFF123",
-                1, 30, 30, 30, Estado.BUENO));
+                5, 30, 30, 30, Estado.BUENO));
         System.out.println(sistema.actualizarCamino("FFF123", "MMM123",
-                1, 30, 30, 30, Estado.BUENO));
+                6, 30, 30, 30, Estado.BUENO));
         System.out.println(sistema.registrarConexion("AAA143", "ABQ143",
-                1, 50, 50, 50, Estado.BUENO));
+                7, 50, 50, 50, Estado.BUENO));
         System.out.println(sistema.registrarConexion("KJL589", "UYT896",
-                1, 50, 50, 50, Estado.BUENO));
+                8, 50, 50, 50, Estado.BUENO));
 
-        System.out.println("\n" + "----------IMPRIMIR GRAFOOOOOO  ----------" + "\n");
+        System.out.println("\n" + "----------IMPRIMIR GRAFO  ----------" + "\n");
 
         sistema.getConexiones().imprimirGrafo();
+
+        System.out.println("\n" + "----------TEST: BFS  ----------" + "\n");
+
+        sistema.listadoEstacionesCantTrasbordos("MMM123", 4);
 
     }
 }

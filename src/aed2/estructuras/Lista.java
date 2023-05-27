@@ -1,11 +1,7 @@
 package aed2.estructuras;
-import aed2.interfaz.Sistema;
-import aed2.sistema.Implementacion;
 
 public class Lista<T extends Comparable<T>> implements ILista<T> {
     private Nodo inicio;
-   // private int contadorEstaciones = 0;
-
     private class Nodo {
         T dato;
         Nodo siguiente;
@@ -15,13 +11,8 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
             this.siguiente = null;
         }
     }
-
-    //Implementacion sistema = new Implementacion();
-
     @Override
     public void insertar(T dato) {
-        //contadorEstaciones++;
-        //sistema.setCantidadActual(contadorEstaciones);
         Nodo nuevo = new Nodo(dato);
         if (esVacia()) {
             inicio = nuevo;
