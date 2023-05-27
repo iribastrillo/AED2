@@ -136,7 +136,11 @@ public class Grafo implements IGrafo {
             for (int j = 0; j < cantMaxVertices; j++) {
                 Arista arista = matrizAdyacencia[i][j];
                 if (arista != null) {
-                    System.out.print(df.format(arista.getDistancia()) + "  ");
+                    if(arista.getDistancia() >= 10) {
+                        System.out.print(df.format(arista.getDistancia()) + " ");
+                    } else{
+                        System.out.print(df.format(arista.getDistancia()) + "  ");
+                    }
                 } else {
                     System.out.print("0  ");
                 }
