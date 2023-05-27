@@ -1,7 +1,7 @@
 package aed2;
 
 import aed2.dominio.Estacion;
-import aed2.dominio.Pasajero;
+import aed2.dominio.vo.Estado;
 import aed2.interfaz.Consulta;
 import aed2.sistema.Implementacion;
 
@@ -53,6 +53,13 @@ public class Main {
         System.out.println("\n" + "----------TESTEO METODO listarPasajerosPorNacionalidad----------" + "\n");
 
         System.out.println(sistema.listarPasajerosPorNacionalidad("ES"));
-        //HAY PROBLEMAS, VER !
+
+        System.out.println("\n" + "----------TESTEO METODO registrarConexion ----------" + "\n");
+
+
+        System.out.println(sistema.registrarConexion("MMM123", "FFF123",
+                1, 50, 50, 50, Estado.BUENO));
+        System.out.println(sistema.getConexiones().sonAdyacentes(new Estacion("MMM123"), new Estacion("FFF123")));
+
     }
 }

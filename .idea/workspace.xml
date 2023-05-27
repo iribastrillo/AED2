@@ -7,8 +7,11 @@
     <list default="true" id="60d4c193-15e8-4c80-ac70-6f7fb5942b6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/ABB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/ABB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aed2/interfaz/Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/interfaz/Sistema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/dominio/Estacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/dominio/Estacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/Grafo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/Grafo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/IGrafo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/IGrafo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/ILista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/ILista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/Vertex.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,13 +39,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "listPassengersByNationality"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;listPassengersByNationality&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="aed2.estructuras" />
@@ -88,7 +91,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/AED2$Main.ic" NAME="Main Coverage Results" MODIFIED="1683861923560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/AED2$Main.ic" NAME="Main Coverage Results" MODIFIED="1685147821810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>aed2.*</FILTER>
     </SUITE>
   </component>

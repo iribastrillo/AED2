@@ -4,6 +4,7 @@ import aed2.dominio.Estacion;
 import aed2.dominio.Pasajero;
 import aed2.dominio.vo.*;
 import aed2.estructuras.ABB;
+import aed2.estructuras.Grafo;
 import aed2.estructuras.Lista;
 import aed2.interfaz.Consulta;
 import aed2.interfaz.Retorno;
@@ -14,8 +15,16 @@ public class Implementacion implements Sistema {
     private int maxEstaciones;
     private int cantidadActual;
     private ABB abbPasajeros;
-    private Lista<Estacion> stations;
 
+    public Grafo getConexiones() {
+        return conexiones;
+    }
+
+    public void setConexiones(Grafo conexiones) {
+        this.conexiones = conexiones;
+    }
+
+    private Grafo conexiones;
     private int cantidadEstacionesRegistradas = 0;
 
     public int getCantidadActual() {
@@ -42,7 +51,7 @@ public class Implementacion implements Sistema {
         setMaxEstaciones(maxEstaciones);
         setCantidadActual(0);
         abbPasajeros = new ABB();
-        stations = new Lista<Estacion>();
+        conexiones = new Grafo(maxEstaciones, true);
         return Retorno.ok();
     }
 
@@ -133,12 +142,12 @@ public class Implementacion implements Sistema {
 
         Estacion station = new Estacion(codigo, nombre);
 
-        if (stations.existe(station)) {
+        if (conexiones.existeVertice(station)) {
             return Retorno.error4("E4: Ya existe una estación con ese código.");
         }
         cantidadEstacionesRegistradas++;
         setCantidadActual(cantidadEstacionesRegistradas);
-        stations.insertar(station);
+        conexiones.agregarVertice(station);
         return Retorno.ok();
     }
 
@@ -149,7 +158,7 @@ public class Implementacion implements Sistema {
         if (costo <= 0 || tiempo <= 0 || kilometros <= 0) {
             return Retorno.error1("E1: Costo, tiempo y kilómetros deben ser mayores que 0.");
         }
-        if (NoVacio.validate(codigoEstacionOrigen) || NoVacio.validate(codigoEstacionDestino)) {
+        if (!NoVacio.validate(codigoEstacionOrigen) || !NoVacio.validate(codigoEstacionDestino)) {
             return Retorno.error2("E2: El código de origen y destino no pueden ser vacíos.");
         }
         if (estadoDeLaConexion == null) {
@@ -165,14 +174,17 @@ public class Implementacion implements Sistema {
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-        if (!stations.existe(origin)) {
-            return Retorno.error4("E4: No existe la estación de origen");
-        }
+//        if (!stations.existe(origin)) {
+//            return Retorno.error4("E4: No existe la estación de origen.");
+//        }
+//
+//        if (!stations.existe(destination)) {
+//            return Retorno.error5("E4: No existe la estación de destino.");
+//        }
 
-        if (!stations.existe(destination)) {
-            return Retorno.error5("E4: No existe la estación de destino");
-        }
-        return Retorno.noImplementada();
+        conexiones.agregarArista(destination, origin, costo, kilometros);
+
+        return Retorno.ok();
     }
 
     @Override
@@ -198,13 +210,13 @@ public class Implementacion implements Sistema {
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-        if (!stations.existe(origin)) {
-            return Retorno.error4("E4: No existe la estación de origen");
-        }
-
-        if (!stations.existe(destination)) {
-            return Retorno.error5("E4: No existe la estación de destino");
-        }
+//        if (!stations.existe(origin)) {
+//            return Retorno.error4("E4: No existe la estación de origen");
+//        }
+//
+//        if (!stations.existe(destination)) {
+//            return Retorno.error5("E4: No existe la estación de destino");
+//        }
         return Retorno.noImplementada();
     }
 
@@ -222,9 +234,9 @@ public class Implementacion implements Sistema {
 
         Estacion station = new Estacion(codigo);
 
-        if (stations.existe(station)) {
-            return Retorno.error4("E4: Ya existe una estación con ese código.");
-        }
+//        if (stations.existe(station)) {
+//            return Retorno.error4("E4: Ya existe una estación con ese código.");
+//        }
 
         return Retorno.noImplementada();
     }
@@ -244,13 +256,13 @@ public class Implementacion implements Sistema {
         Estacion origin = new Estacion(codigoEstacionOrigen);
         Estacion destination = new Estacion(codigoEstacionDestino);
 
-        if (!stations.existe(origin)) {
-            return Retorno.error4("E4: No existe la estación de origen");
-        }
-
-        if (!stations.existe(destination)) {
-            return Retorno.error5("E4: No existe la estación de destino");
-        }
+//        if (!stations.existe(origin)) {
+//            return Retorno.error4("E4: No existe la estación de origen");
+//        }
+//
+//        if (!stations.existe(destination)) {
+//            return Retorno.error5("E4: No existe la estación de destino");
+//        }
         return Retorno.noImplementada();
     }
 
@@ -265,13 +277,5 @@ public class Implementacion implements Sistema {
 
     public void setAbbPasajeros(ABB abbPasajeros) {
         this.abbPasajeros = abbPasajeros;
-    }
-
-    public Lista<Estacion> getStations() {
-        return stations;
-    }
-
-    public void setStations(Lista<Estacion> stations) {
-        this.stations = stations;
     }
 }

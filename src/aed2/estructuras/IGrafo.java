@@ -1,9 +1,16 @@
 package aed2.estructuras;
 
-public interface IGrafo <T> {
-    void addVertex (Vertex<T> v);
-    void addEdge (Vertex <T> origin, Vertex <T> destination, float weight);
-    void removeVertex (Vertex <T> v);
-    void removeEdge (Vertex <T> origin, Vertex<T> destination);
-    void vertexExists (Vertex <T> v);
+import aed2.dominio.Estacion;
+
+public interface IGrafo {
+    void agregarVertice(Estacion nombre);
+    void agregarArista(Estacion origen, Estacion destino, double costo, double distancia);
+    void eliminarVertice(Estacion v);
+    void eliminarArista(int origen, int destino);
+    boolean existeVertice(Estacion v);
+    boolean sonAdyacentes(Estacion a, Estacion b);
+    Lista<Integer> verticesAdyacentes(Estacion v);
+    boolean esVacio();
+    boolean estaLlena();
+
 }
