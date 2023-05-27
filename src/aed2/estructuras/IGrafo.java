@@ -7,6 +7,7 @@ public interface IGrafo {
     void agregarArista(Estacion origen, Estacion destino, double costo, double distancia);
     void eliminarVertice(Estacion v);
     void eliminarArista(int origen, int destino);
+    void imprimirGrafo();
     boolean existeVertice(Estacion v);
     boolean sonAdyacentes(Estacion a, Estacion b);
     Lista<Integer> verticesAdyacentes(Estacion v);

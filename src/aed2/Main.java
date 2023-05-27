@@ -2,7 +2,10 @@ package aed2;
 
 import aed2.dominio.Estacion;
 import aed2.dominio.vo.Estado;
+import aed2.estructuras.ABB;
+import aed2.estructuras.Grafo;
 import aed2.interfaz.Consulta;
+import aed2.interfaz.Sistema;
 import aed2.sistema.Implementacion;
 
 public class Main {
@@ -65,6 +68,10 @@ public class Main {
                 1, 30, 30, 30, Estado.BUENO));
         System.out.println(sistema.actualizarCamino("FFF123", "MMM123",
                 1, 30, 30, 30, Estado.BUENO));
+
+        System.out.println("\n" + "----------IMPRIMIR GRAFOOOOOO ----------" + "\n");
+
+        sistema.getConexiones().imprimirGrafo();
 
     }
 }
