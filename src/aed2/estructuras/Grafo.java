@@ -187,8 +187,6 @@ public class Grafo implements IGrafo {
             for (int i = 0; i < cantMaxVertices; i++) {
                 if (!matrizAdyacencia[current.pos][i].esVacia() && !visitados[i]) {
                     cola.enqueue(new Tupla (i, current.salto + 1));
-                    Lista <Arista> aristas = matrizAdyacencia[current.pos][i];
-                    stations.insertar(aristas.toString() + current.salto + " |");
                     visitados[i] = true;
                 }
             }
