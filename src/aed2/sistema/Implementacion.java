@@ -243,9 +243,7 @@ public class Implementacion implements Sistema {
             return Retorno.error4("E4: No existe la estación de origen.");
         }
 
-        conexiones.bfsCantidadDeTrasbordos(codigo, cantidad).imprimirLista();
-
-        return Retorno.ok();
+        return Retorno.ok(conexiones.bfsCantidadDeTrasbordos(codigo, cantidad).toString());
     }
 
     @Override

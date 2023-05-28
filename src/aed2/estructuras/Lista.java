@@ -85,4 +85,15 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
         System.out.print(nodo.dato + " ");
         imprimirListaRecursivo(nodo.siguiente);
     }
+
+    @Override
+    public String toString() {
+        String s = "";
+        Nodo aux = this.inicio;
+        while (aux != null) {
+            s = s + aux.dato.toString();
+            aux = aux.siguiente;
+        }
+        return s;
+    }
 }
