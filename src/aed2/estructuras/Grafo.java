@@ -183,12 +183,14 @@ public class Grafo implements IGrafo {
             Tupla current = cola.dequeue();
             Vertice vertex = vertices[current.pos];
             Estacion station = vertex.dato;
-            stations.insertar(station.getNombre() + " " + current.salto + " |");
+            stations.insertar(station.toString() + " " + current.salto + " |");
             for (int i = 0; i < cantMaxVertices; i++) {
-//                if (matrizAdyacencia[current.pos][i].isExiste() && !visitados[i]) {
-//                    cola.enqueue(new Tupla (i, current.salto + 1));
-//                    visitados[i] = true;
-//                }
+                if (!matrizAdyacencia[current.pos][i].esVacia() && !visitados[i]) {
+                    cola.enqueue(new Tupla (i, current.salto + 1));
+                    Lista <Arista> aristas = matrizAdyacencia[current.pos][i];
+                    stations.insertar(aristas.toString() + current.salto + " |");
+                    visitados[i] = true;
+                }
             }
             start ++;
         }

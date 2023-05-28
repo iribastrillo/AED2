@@ -84,7 +84,7 @@ public class Main {
 
         System.out.println("\n" + "----------TEST: BFS  ----------" + "\n");
 
-        System.out.println(sistema.listadoEstacionesCantTrasbordos("FFF123", 4));
+        System.out.println(sistema.listadoEstacionesCantTrasbordos("MMM123", 4));
 
     }
 }

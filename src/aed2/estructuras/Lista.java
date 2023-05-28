@@ -106,6 +106,8 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
         imprimirListaRecursivo(nodo.siguiente);
     }
 
+
+
     @Override
     public String toString() {
         String s = "";
