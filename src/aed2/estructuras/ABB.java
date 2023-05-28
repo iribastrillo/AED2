@@ -202,10 +202,10 @@ public class ABB {
             String nacionalidad = nodo.getPasajero().getId().substring(0, 2);
 
             if (nacionalidad.equals(codigoNacionalidad)) {
-                mensaje.append(nodo.getPasajero().getId() + "|"
-                        + nodo.getPasajero().getNombre() + "|"
-                        + nodo.getPasajero().getEdad() + "|"
-                        + nacionalidad);
+                mensaje.append(nodo.getPasajero().getId() + ";"
+                        + nodo.getPasajero().getNombre() + ";"
+                        + nodo.getPasajero().getEdad() + ";"
+                        + nacionalidad + "|");
             }
             imprimirPorNacionalidadRecurisvo(nodo.getIzquierdo(), codigoNacionalidad, mensaje);
             imprimirPorNacionalidadRecurisvo(nodo.getDerecho(), codigoNacionalidad, mensaje);

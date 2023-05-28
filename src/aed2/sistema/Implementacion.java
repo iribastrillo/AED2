@@ -179,7 +179,7 @@ public class Implementacion implements Sistema {
         }
 
         if (!this.conexiones.existeVertice(destination)) {
-            return Retorno.error5("E4: No existe la estación de destino.");
+            return Retorno.error5("E5: No existe la estación de destino.");
         }
 
         conexiones.agregarArista(origin, destination, identificadorConexion, costo, kilometros,
