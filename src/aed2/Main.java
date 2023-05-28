@@ -1,11 +1,7 @@
 package aed2;
 
-import aed2.dominio.Estacion;
 import aed2.dominio.vo.Estado;
-import aed2.estructuras.ABB;
-import aed2.estructuras.Grafo;
 import aed2.interfaz.Consulta;
-import aed2.interfaz.Sistema;
 import aed2.sistema.Implementacion;
 
 public class Main {

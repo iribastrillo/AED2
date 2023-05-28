@@ -1,6 +1,7 @@
 package aed2.estructuras;
 
 import aed2.dominio.Estacion;
+import aed2.dominio.vo.Estado;
 
 import java.text.DecimalFormat;
 
@@ -51,11 +52,11 @@ public class Grafo implements IGrafo {
     }
 
     @Override
-    public void agregarArista(Estacion origen, Estacion destino, double costo, double distancia) {
+    public void agregarArista(Estacion origen, Estacion destino, double costo, double distancia, Estado estado, double tiempo) {
         int obtenerPosOrigen = obtenerPos(origen);
         int obtenerPosDestino = obtenerPos(destino);
         if (obtenerPosOrigen >= 0 && obtenerPosDestino >= 0) {
-            matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino] = new Arista(costo, distancia);
+            matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino] = new Arista(costo, distancia, estado, tiempo);
             if (!esDirigido) {
                 matrizAdyacencia[obtenerPosDestino][obtenerPosOrigen] = matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino];
             }
@@ -218,10 +219,14 @@ public class Grafo implements IGrafo {
         public boolean existe;
         public double costo;
         public double distancia;
-        public Arista(double costo, double distancia) {
+        public Estado estado;
+        public double tiempo;
+        public Arista(double costo, double distancia, Estado estado, double tiempo) {
             this.costo = costo;
             this.distancia = distancia;
             this.existe = true;
+            this.estado = estado;
+            this.tiempo = tiempo;
         }
 
         public Arista() {

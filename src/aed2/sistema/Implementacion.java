@@ -182,7 +182,7 @@ public class Implementacion implements Sistema {
             return Retorno.error5("E4: No existe la estación de destino.");
         }
 
-        conexiones.agregarArista(origin, destination, costo, kilometros);
+        conexiones.agregarArista(origin, destination, costo, kilometros, estadoDeLaConexion, tiempo);
         return Retorno.ok();
     }
 
@@ -218,7 +218,7 @@ public class Implementacion implements Sistema {
         }
 
         if (this.conexiones.sonAdyacentes(origin, destination)) {
-            conexiones.agregarArista(destination, origin, costo, kilometros);
+            conexiones.agregarArista(destination, origin, costo, kilometros, estadoDelCamino, tiempo);
             return Retorno.ok();
         } else {
             return Retorno.error6("E6: No existe la conexión entre el origen y el destino.");
