@@ -24,7 +24,19 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
 
     @Override
     public void borrar(T dato) {
-
+        Nodo aux = inicio;
+        Nodo previous = null;
+        while (aux != null) {
+            if (aux.equals(dato)) {
+                if (previous == null) {
+                    inicio = null;
+                } else {
+                    previous.siguiente = aux.siguiente;
+                }
+            }
+            aux = aux.siguiente;
+            previous = aux;
+        }
     }
 
     @Override
@@ -46,7 +58,15 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
 
     @Override
     public T recuperar(T dato) {
-        return null;
+        Nodo buscado = null;
+        Nodo aux = inicio;
+        while (aux != null) {
+            if (aux.dato.equals(dato)) {
+                buscado = aux;
+            }
+            aux = aux.siguiente;
+        }
+        return buscado.dato;
     }
 
     public boolean esVacia() {

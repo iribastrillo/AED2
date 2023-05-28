@@ -5,7 +5,7 @@ import aed2.dominio.vo.Estado;
 
 public interface IGrafo {
     void agregarVertice(Estacion nombre);
-    void agregarArista(Estacion origen, Estacion destino, double costo, double distancia, Estado estado, double tiempo);
+    void agregarArista(Estacion origen, Estacion destino, int identificador, double costo, double distancia, Estado estado, double tiempo);
     void eliminarVertice(Estacion v);
     void eliminarArista(int origen, int destino);
     void imprimirGrafo();

@@ -54,26 +54,31 @@ public class Main {
 
         System.out.println(sistema.listarPasajerosPorNacionalidad("UK"));
 
-        System.out.println("\n" + "----------TESTEO METODO registrarConexion ----------" + "\n");
+        System.out.println("\n" + "----------TEST: Registrar conexión  ----------" + "\n");
 
         System.out.println(sistema.registrarConexion("MMM123", "FFF123",
-                1, 50, 50, 50, Estado.BUENO));
+                1, 1000, 50, 50, Estado.BUENO));
+        System.out.println(sistema.registrarConexion("MMM123", "FFF123",
+                10, 50, 50, 100, Estado.BUENO));
         System.out.println(sistema.registrarConexion("FFF123", "AAA143",
-                2, 100, 100, 200, Estado.BUENO));
+                2, 3, 100, 200, Estado.BUENO));
         System.out.println(sistema.registrarConexion("RRR123", "FFF123",
                 3, 50, 50, 50, Estado.BUENO));
         System.out.println(sistema.registrarConexion("MMM123", "WWW123",
                 4, 50, 50, 50, Estado.BUENO));
-        System.out.println(sistema.actualizarCamino("MMM123", "FFF123",
-                5, 30, 30, 30, Estado.BUENO));
-        System.out.println(sistema.actualizarCamino("FFF123", "MMM123",
-                6, 30, 30, 30, Estado.BUENO));
         System.out.println(sistema.registrarConexion("AAA143", "ABQ143",
                 7, 50, 50, 50, Estado.BUENO));
         System.out.println(sistema.registrarConexion("KJL589", "UYT896",
                 8, 50, 50, 50, Estado.BUENO));
+        System.out.println(sistema.registrarConexion("MMM123", "FFF123",
+                9, 50, 50, 50, Estado.MALO));
 
-        System.out.println("\n" + "----------IMPRIMIR GRAFO  ----------" + "\n");
+        System.out.println("\n" + "----------TEST: Actualizar camino  ----------" + "\n");
+
+        sistema.getConexiones().imprimirGrafo();
+
+        System.out.println(sistema.actualizarCamino("MMM123", "FFF123",
+                1, 1, 30, 30, Estado.BUENO));
 
         sistema.getConexiones().imprimirGrafo();
 

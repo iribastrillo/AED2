@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/aed2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/Grafo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/Grafo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/IGrafo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/IGrafo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/Lista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/Lista.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/sistema/Implementacion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,6 +84,11 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/aed2/estructuras/Grafo.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

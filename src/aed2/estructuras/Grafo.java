@@ -9,18 +9,18 @@ public class Grafo implements IGrafo {
     private final int cantMaxVertices;
     private int cantVertices;
     private boolean esDirigido;
-    private Arista[][] matrizAdyacencia;
+    private Lista<Arista>[][] matrizAdyacencia;
     private Vertice[] vertices;
 
     public Grafo(int cantMaxVertices, boolean esDirigido) {
         this.esDirigido = esDirigido;
         this.cantMaxVertices = cantMaxVertices;
-        this.matrizAdyacencia = new Arista[cantMaxVertices][cantMaxVertices];
+        this.matrizAdyacencia = new Lista[cantMaxVertices][cantMaxVertices];
         this.vertices = new Vertice[cantMaxVertices];
 
         for (int i = 0; i < cantMaxVertices; i++) {
             for (int j = 0; j < cantMaxVertices; j++) {
-                matrizAdyacencia[i][j] = new Arista();
+                matrizAdyacencia[i][j] = new Lista<>();
             }
         }
     }
@@ -52,14 +52,32 @@ public class Grafo implements IGrafo {
     }
 
     @Override
-    public void agregarArista(Estacion origen, Estacion destino, double costo, double distancia, Estado estado, double tiempo) {
+    public void agregarArista(Estacion origen, Estacion destino, int identificador, double costo, double distancia, Estado estado, double tiempo) {
         int obtenerPosOrigen = obtenerPos(origen);
         int obtenerPosDestino = obtenerPos(destino);
         if (obtenerPosOrigen >= 0 && obtenerPosDestino >= 0) {
-            matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino] = new Arista(costo, distancia, estado, tiempo);
+            Lista<Arista> aristas = matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino];
+            aristas.insertar(new Arista(costo, distancia, estado, tiempo, identificador));
             if (!esDirigido) {
-                matrizAdyacencia[obtenerPosDestino][obtenerPosOrigen] = matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino];
+                matrizAdyacencia[obtenerPosDestino][obtenerPosOrigen] = aristas;
             }
+        }
+    }
+
+    public void actualizarArista (Estacion origen, Estacion destino, int identificador, double costo, double distancia, Estado estado, double tiempo) {
+        int obtenerPosOrigen = obtenerPos(origen);
+        int obtenerPosDestino = obtenerPos(destino);
+        if (obtenerPosOrigen >= 0 && obtenerPosDestino >= 0) {
+            Lista<Arista> aristas = matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino];
+            Arista conexion = aristas.recuperar(new Arista(identificador));
+            conexion.costo = costo;
+            conexion.distancia = distancia;
+            conexion.estado = estado;
+            conexion.tiempo = tiempo;
+            if (!esDirigido) {
+                matrizAdyacencia[obtenerPosDestino][obtenerPosOrigen] = aristas;
+            }
+            System.out.println(aristas);
         }
     }
 
@@ -70,22 +88,14 @@ public class Grafo implements IGrafo {
         if (posVert >= 0) {
             vertices[posVert] = null;
             for (int i = 1; i <= cantMaxVertices; i++) {
-                matrizAdyacencia[posVert][i].setExiste(false);
-                matrizAdyacencia[posVert][i].setCosto(0);
-                matrizAdyacencia[posVert][i].setDistancia(0);
-                matrizAdyacencia[i][posVert].setExiste(false);
-                matrizAdyacencia[i][posVert].setCosto(0);
-                matrizAdyacencia[i][posVert].setDistancia(0);
+                matrizAdyacencia[posVert][i] = new Lista<>();
+                matrizAdyacencia[i][posVert] = new Lista<>();
             }
         }
     }
 
     @Override
-    public void eliminarArista(int origen, int destino) {
-        matrizAdyacencia[origen][destino].setExiste(false);
-        matrizAdyacencia[origen][destino].setCosto(0);
-        matrizAdyacencia[origen][destino].setDistancia(0);
-    }
+    public void eliminarArista(int origen, int destino) {}
 
     @Override
     public boolean existeVertice(Estacion vert) {
@@ -97,7 +107,7 @@ public class Grafo implements IGrafo {
         int obtenerPosOrigen = obtenerPos(b);
         int obtenerPosDestino = obtenerPos(a);
         if (obtenerPosOrigen >= 0 && obtenerPosDestino >= 0) {
-            return matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino].isExiste();
+            return matrizAdyacencia[obtenerPosOrigen][obtenerPosDestino].esVacia();
         } else {
             return false;
         }
@@ -122,27 +132,22 @@ public class Grafo implements IGrafo {
         System.out.println("Cantidad máxima de vértices: " + cantMaxVertices);
         System.out.println("Es dirigido: " + esDirigido);
         System.out.println("Matriz de adyacencia:");
-        DecimalFormat df = new DecimalFormat("0");
         // Imprimir encabezado de columnas
-        System.out.print("   ");
+        System.out.print("\t");
         for (int i = 0; i < cantMaxVertices; i++) {
-            System.out.print(i + "  ");
+            System.out.print(i + "\t");
         }
         System.out.println();
 
         // Imprimir filas y valores de la matriz de adyacencia
         for (int i = 0; i < cantMaxVertices; i++) {
-            System.out.print(i + "  ");
+            System.out.print(i + "\t");
             for (int j = 0; j < cantMaxVertices; j++) {
-                Arista arista = matrizAdyacencia[i][j];
-                if (arista != null) {
-                    if(arista.getDistancia() >= 10) {
-                        System.out.print(df.format(arista.getDistancia()) + " ");
-                    } else{
-                        System.out.print(df.format(arista.getDistancia()) + "  ");
-                    }
+                Lista<Arista> aristas = matrizAdyacencia[i][j];
+                if (!aristas.esVacia()) {
+                    System.out.println(aristas + "\t");
                 } else {
-                    System.out.print("0  ");
+                    System.out.print("0" + "\t");
                 }
             }
             System.out.println();
@@ -180,10 +185,10 @@ public class Grafo implements IGrafo {
             Estacion station = vertex.dato;
             stations.insertar(station.getNombre() + " " + current.salto + " |");
             for (int i = 0; i < cantMaxVertices; i++) {
-                if (matrizAdyacencia[current.pos][i].isExiste() && !visitados[i]) {
-                    cola.enqueue(new Tupla (i, current.salto + 1));
-                    visitados[i] = true;
-                }
+//                if (matrizAdyacencia[current.pos][i].isExiste() && !visitados[i]) {
+//                    cola.enqueue(new Tupla (i, current.salto + 1));
+//                    visitados[i] = true;
+//                }
             }
             start ++;
         }
@@ -215,18 +220,23 @@ public class Grafo implements IGrafo {
         }
     }
 
-    private class Arista {
+    private class Arista implements Comparable<Arista> {
         public boolean existe;
         public double costo;
         public double distancia;
         public Estado estado;
         public double tiempo;
-        public Arista(double costo, double distancia, Estado estado, double tiempo) {
+        public int identificador;
+        public Arista (int identificador) {
+            this.identificador = identificador;
+        }
+        public Arista(double costo, double distancia, Estado estado, double tiempo, int identificador) {
             this.costo = costo;
             this.distancia = distancia;
             this.existe = true;
             this.estado = estado;
             this.tiempo = tiempo;
+            this.identificador = identificador;
         }
 
         public Arista() {
@@ -254,6 +264,23 @@ public class Grafo implements IGrafo {
 
         public void setDistancia(int distancia) {
             this.distancia = distancia;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            Arista otra = (Arista) obj;
+            return this.identificador == otra.identificador;
+        }
+
+        @Override
+        public int compareTo (Arista o) {
+            if (this.identificador == o.identificador) return 1;
+            else return -1;
+        }
+
+        @Override
+        public String toString() {
+            return Double.toString(costo);
         }
     }
 
