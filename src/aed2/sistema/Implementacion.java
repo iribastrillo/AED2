@@ -182,7 +182,9 @@ public class Implementacion implements Sistema {
             return Retorno.error5("E4: No existe la estación de destino.");
         }
 
-        conexiones.agregarArista(origin, destination, identificadorConexion, costo, kilometros, estadoDeLaConexion, tiempo);
+        conexiones.agregarArista(origin, destination, identificadorConexion, costo, kilometros,
+                estadoDeLaConexion, tiempo);
+        
         return Retorno.ok();
     }
 
