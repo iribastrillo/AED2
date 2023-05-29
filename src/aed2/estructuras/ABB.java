@@ -124,18 +124,18 @@ public class ABB {
         return valorString.length() > 1 ? valorString.substring(0, valorString.length()-1) : valorString;
     }
 
-    private String filtrarPasajeros(Nodo nodo, Consulta consulta) {
-        if (nodo != null) {
-            if (nodo.derecho == null && nodo.izquierdo == null) {
-                return filtrar(nodo.pasajero, consulta.getRaiz()) ? nodo.pasajero.getId() + "|" : "";
-            } else {
-                return filtrar(nodo.pasajero, consulta.getRaiz()) ?
-                        nodo.pasajero.getId() + "|" + filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta) :
-                        filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta);
-            }
-        }
-        return "";
-    }
+//    private String filtrarPasajeros(Nodo nodo, Consulta consulta) {
+//        if (nodo != null) {
+//            if (nodo.derecho == null && nodo.izquierdo == null) {
+//                return filtrar(nodo.pasajero, consulta.getRaiz()) ? nodo.pasajero.getId() + "|" : "";
+//            } else {
+//                return filtrar(nodo.pasajero, consulta.getRaiz()) ?
+//                        nodo.pasajero.getId() + "|" + filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta) :
+//                        filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta);
+//            }
+//        }
+//        return "";
+//    }
 
     private String filtrarPasajeros(Nodo nodo, Consulta consulta) {
         if(nodo != null) {
@@ -143,17 +143,15 @@ public class ABB {
                 return filtrar(nodo.pasajero, consulta.getRaiz()) ?
                         nodo.pasajero.getId() + "|" + filtrarPasajeros(nodo.derecho, consulta) :
                         "" + filtrarPasajeros(nodo.derecho, consulta);
-            } else if (nodo.derecho != null) {
+            } else {
                 return filtrar(nodo.pasajero, consulta.getRaiz()) ?
-                        filtrarPasajeros(nodo.izquierdo, consulta)
-                                + nodo.pasajero.getId() + "|"
+                        filtrarPasajeros(nodo.izquierdo, consulta) + nodo.pasajero.getId() + "|"
                                 + filtrarPasajeros(nodo.derecho, consulta) :
                         filtrarPasajeros(nodo.izquierdo, consulta) + ""
                                 + filtrarPasajeros(nodo.derecho, consulta);
-            } else {
-                return filtrarPasajeros(nodo)
             }
         }
+        return "";
     }
 
     private boolean filtrar(Pasajero p, Consulta.NodoConsulta nodo) {
@@ -179,12 +177,10 @@ public class ABB {
         if (nodo != null) {
             if (nodo.derecho == null) {
                 return nodo.pasajero + "|" + imprimirEnOrdenDescendente(nodo.izquierdo);
-            } else if (nodo.izquierdo != null) {
+            } else {
                 return imprimirEnOrdenDescendente(nodo.derecho)
                         + nodo.pasajero + "|"
                         + imprimirEnOrdenDescendente(nodo.izquierdo);
-            } else {
-                return imprimirEnOrdenDescendente(nodo.derecho) + nodo.pasajero + "|";
             }
         }
         return "";
@@ -199,12 +195,10 @@ public class ABB {
         if (nodo != null) {
             if (nodo.izquierdo == null) {
                 return nodo.pasajero + "|" + imprimirEnOrdenAscedente(nodo.derecho);
-            } else if (nodo.derecho != null) {
+            } else {
                 return imprimirEnOrdenAscedente(nodo.izquierdo)
                         + nodo.pasajero + "|"
                         + imprimirEnOrdenAscedente(nodo.derecho);
-            } else {
-                return imprimirEnOrdenAscedente(nodo.izquierdo) + nodo.pasajero + "|";
             }
         }
         return "";
