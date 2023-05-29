@@ -104,12 +104,10 @@ public class ABB {
         if (nodo != null) {
             if (nodo.derecho == null) {
                 return nodo.pasajero + "|" + imprimirEnOrdenDescendente(nodo.izquierdo);
-            } else if (nodo.izquierdo != null) {
+            } else {
                 return imprimirEnOrdenDescendente(nodo.derecho)
                         + nodo.pasajero + "|"
                         + imprimirEnOrdenDescendente(nodo.izquierdo);
-            } else {
-                return imprimirEnOrdenDescendente(nodo.derecho) + nodo.pasajero + "|";
             }
         }
         return "";
@@ -124,12 +122,10 @@ public class ABB {
         if (nodo != null) {
             if (nodo.izquierdo == null) {
                 return nodo.pasajero + "|" + imprimirEnOrdenAscedente(nodo.derecho);
-            } else if (nodo.derecho != null) {
+            } else {
                 return imprimirEnOrdenAscedente(nodo.izquierdo)
                         + nodo.pasajero + "|"
                         + imprimirEnOrdenAscedente(nodo.derecho);
-            } else {
-                return imprimirEnOrdenAscedente(nodo.izquierdo) + nodo.pasajero + "|";
             }
         }
         return "";
