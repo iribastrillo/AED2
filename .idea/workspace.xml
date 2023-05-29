@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60d4c193-15e8-4c80-ac70-6f7fb5942b6a" name="Changes" comment="" />
+    <list default="true" id="60d4c193-15e8-4c80-ac70-6f7fb5942b6a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aed2/estructuras/ABB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aed2/estructuras/ABB.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,21 +69,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/aed2/dominio/Pasajero.java</url>
-          <line>14</line>
-          <properties class="aed2.dominio.Pasajero">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AED2$Main.ic" NAME="Main Coverage Results" MODIFIED="1683861923560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

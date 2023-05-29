@@ -127,14 +127,33 @@ public class ABB {
     private String filtrarPasajeros(Nodo nodo, Consulta consulta) {
         if (nodo != null) {
             if (nodo.derecho == null && nodo.izquierdo == null) {
-                return filtrar(nodo.pasajero, consulta.getRaiz()) ? nodo.pasajero + "|" : "";
+                return filtrar(nodo.pasajero, consulta.getRaiz()) ? nodo.pasajero.getId() + "|" : "";
             } else {
                 return filtrar(nodo.pasajero, consulta.getRaiz()) ?
-                        nodo.pasajero + "|" + filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta) :
+                        nodo.pasajero.getId() + "|" + filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta) :
                         filtrarPasajeros(nodo.derecho, consulta) + filtrarPasajeros(nodo.izquierdo, consulta);
             }
         }
         return "";
+    }
+
+    private String filtrarPasajeros(Nodo nodo, Consulta consulta) {
+        if(nodo != null) {
+            if (nodo.izquierdo == null) {
+                return filtrar(nodo.pasajero, consulta.getRaiz()) ?
+                        nodo.pasajero.getId() + "|" + filtrarPasajeros(nodo.derecho, consulta) :
+                        "" + filtrarPasajeros(nodo.derecho, consulta);
+            } else if (nodo.derecho != null) {
+                return filtrar(nodo.pasajero, consulta.getRaiz()) ?
+                        filtrarPasajeros(nodo.izquierdo, consulta)
+                                + nodo.pasajero.getId() + "|"
+                                + filtrarPasajeros(nodo.derecho, consulta) :
+                        filtrarPasajeros(nodo.izquierdo, consulta) + ""
+                                + filtrarPasajeros(nodo.derecho, consulta);
+            } else {
+                return filtrarPasajeros(nodo)
+            }
+        }
     }
 
     private boolean filtrar(Pasajero p, Consulta.NodoConsulta nodo) {
@@ -143,7 +162,7 @@ public class ABB {
         } else if (nodo.getTipoNodoConsulta().equals(Consulta.TipoNodoConsulta.NombreIgual)) {
             return p.getNombre().equals(nodo.getValorString());
         } else if (nodo.getTipoNodoConsulta().equals(Consulta.TipoNodoConsulta.Nacionalidad)) {
-            return p.getNacionalidad().equals(nodo.getValorNacionalidad());
+            return p.getNacionalidad().equals(nodo.getValorNacionalidad().getCodigo());
         } else if (nodo.getTipoNodoConsulta().equals(Consulta.TipoNodoConsulta.And)) {
             return filtrar(p, nodo.getIzq()) && filtrar(p, nodo.getDer());
         } else {

@@ -47,8 +47,12 @@ public class Main {
 
         System.out.println("\n" + "----------TESTEO METODO filtrarPasajeros----------" + "\n");
 
-        Consulta consulta = Consulta.fromString("[nombre='Ignacio' AND edad > 10]");
+        Consulta consulta = Consulta.fromString("[nombre='Ignacio' OR edad > 10]");
+        Consulta consulta2 = Consulta.fromString("[nacionalidad='UK']");
+//        Consulta consulta3 = Consulta.fromString("");
         System.out.println(sistema.filtrarPasajeros(consulta));
+        System.out.println(sistema.filtrarPasajeros(consulta2));
+//        System.out.println(sistema.filtrarPasajeros(consulta3));
 
         System.out.println("\n" + "----------TESTEO METODO listarPasajerosPorNacionalidad----------" + "\n");
 
