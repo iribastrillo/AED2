@@ -76,6 +76,8 @@ public class Main {
                 8, 50, 50, 50, Estado.BUENO));
         System.out.println(sistema.registrarConexion("MMM123", "FFF123",
                 9, 50, 50, 50, Estado.MALO));
+        System.out.println(sistema.registrarConexion("MMM123", "FFF123",
+                1, 1000, 50, 50, Estado.BUENO));
 
         System.out.println("\n" + "----------TEST: Actualizar camino  ----------" + "\n");
 

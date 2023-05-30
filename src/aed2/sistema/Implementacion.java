@@ -165,10 +165,10 @@ public class Implementacion implements Sistema {
             return Retorno.error2("E2: El estado de la conexión no puede ser nulo.");
         }
         if (!Codigo.validate(codigoEstacionOrigen)) {
-            return Retorno.error3("E2: El código de origen no es válido.");
+            return Retorno.error3("E3: El código de origen no es válido.");
         }
         if (!Codigo.validate(codigoEstacionDestino)) {
-            return Retorno.error3("E2: El código de destino no es válido.");
+            return Retorno.error3("E3: El código de destino no es válido.");
         }
 
         Estacion origin = new Estacion(codigoEstacionOrigen);
@@ -180,6 +180,10 @@ public class Implementacion implements Sistema {
 
         if (!this.conexiones.existeVertice(destination)) {
             return Retorno.error5("E5: No existe la estación de destino.");
+        }
+
+        if (this.conexiones.sonAdyacentes(origin, destination) && this.conexiones.buscarAristaPorIdentificador(identificadorConexion)) {
+            return Retorno.error6("E6: Ya existe un camino entre el origen y el destino con mismo identificador.");
         }
 
         conexiones.agregarArista(origin, destination, identificadorConexion, costo, kilometros,

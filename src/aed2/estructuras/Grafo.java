@@ -50,6 +50,24 @@ public class Grafo implements IGrafo {
         }
         return -1;
     }
+    @Override
+    public boolean buscarAristaPorIdentificador(int identificador) {
+        for (int i = 0; i < cantMaxVertices; i++) {
+            for (int j = 0; j < cantMaxVertices; j++) {
+                Lista<Arista> aristas = matrizAdyacencia[i][j];
+                if (!aristas.esVacia()) {
+                    for (int k = 0; k < aristas.size();k++) {
+                        Arista arista = aristas.getElementoEnPosicion(k);
+                        if (arista.getIdentificador() == identificador) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public void agregarArista(Estacion origen, Estacion destino, int identificador, double costo, double distancia, Estado estado, double tiempo) {
@@ -127,15 +145,15 @@ public class Grafo implements IGrafo {
     }
     @Override
     public void imprimirGrafo() {
-
         System.out.println("Información del Grafo:");
         System.out.println("Cantidad máxima de vértices: " + cantMaxVertices);
         System.out.println("Es dirigido: " + esDirigido);
         System.out.println("Matriz de adyacencia:");
+
         // Imprimir encabezado de columnas
         System.out.print("\t");
         for (int i = 0; i < cantMaxVertices; i++) {
-            System.out.print(i + "\t");
+            System.out.print(i + "       \t");
         }
         System.out.println();
 
@@ -145,9 +163,12 @@ public class Grafo implements IGrafo {
             for (int j = 0; j < cantMaxVertices; j++) {
                 Lista<Arista> aristas = matrizAdyacencia[i][j];
                 if (!aristas.esVacia()) {
-                    System.out.println(aristas + "\t");
+                    for (int k = 0; k < aristas.size(); k++) {
+                        Arista arista = aristas.getElementoEnPosicion(k);
+                        System.out.print(arista.identificador + "-");
+                    }
                 } else {
-                    System.out.print("0" + "\t");
+                    System.out.print("0       \t");
                 }
             }
             System.out.println();
@@ -161,6 +182,9 @@ public class Grafo implements IGrafo {
             }
         }
     }
+
+
+
     @Override
     public boolean esVacio() {
         return cantVertices == 0;
@@ -252,6 +276,10 @@ public class Grafo implements IGrafo {
 
         public double getCosto() {
             return costo;
+        }
+
+        public int getIdentificador() {
+            return identificador;
         }
 
         public void setCosto(int costo) {

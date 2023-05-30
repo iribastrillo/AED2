@@ -12,6 +12,30 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
         }
     }
     @Override
+    public int size() {
+        int count = 0;
+        Nodo aux = inicio;
+        while (aux != null) {
+            count++;
+            aux = aux.siguiente;
+        }
+        return count;
+    }
+    @Override
+    public T getElementoEnPosicion(int posicion) {
+        int count = 0;
+        Nodo aux = inicio;
+        while (aux != null) {
+            if (count == posicion) {
+                return aux.dato;
+            }
+            count++;
+            aux = aux.siguiente;
+        }
+        return null;
+    }
+
+    @Override
     public void insertar(T dato) {
         Nodo nuevo = new Nodo(dato);
         if (esVacia()) {
