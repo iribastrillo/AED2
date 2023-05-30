@@ -207,7 +207,7 @@ public class Grafo implements IGrafo {
             Tupla current = cola.dequeue();
             Vertice vertex = vertices[current.pos];
             Estacion station = vertex.dato;
-            stations.insertar(station.toString() + " " + current.salto + " |");
+            stations.insertar(station.toString() + " " + current.salto + ";" + station.getNombre() + " |");
             for (int i = 0; i < cantMaxVertices; i++) {
                 if (!matrizAdyacencia[current.pos][i].esVacia() && !visitados[i]) {
                     cola.enqueue(new Tupla (i, current.salto + 1));
@@ -216,7 +216,7 @@ public class Grafo implements IGrafo {
             }
             start ++;
         }
-        return stations;
+        return stations.ordenarAlfabeticamente();
     }
 
     private class Vertice {

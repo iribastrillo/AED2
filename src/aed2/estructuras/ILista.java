@@ -7,6 +7,7 @@ public interface ILista<T> {
     int size();
     T getElementoEnPosicion(int posicion);
     boolean existe(T dato);
+    Lista<String> ordenarAlfabeticamente();
     T recuperar(T dato);
     boolean esVacia();
     boolean esLlena();

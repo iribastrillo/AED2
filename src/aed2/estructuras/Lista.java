@@ -2,6 +2,10 @@ package aed2.estructuras;
 
 public class Lista<T extends Comparable<T>> implements ILista<T> {
     private Nodo inicio;
+
+    public Nodo getInicio() {
+        return inicio;
+    }
     private class Nodo {
         T dato;
         Nodo siguiente;
@@ -129,6 +133,46 @@ public class Lista<T extends Comparable<T>> implements ILista<T> {
         System.out.print(nodo.dato + " ");
         imprimirListaRecursivo(nodo.siguiente);
     }
+
+    public Lista<String> ordenarAlfabeticamente() {
+        Lista<String> listaOrdenada = new Lista<>();
+
+        // Copiar los elementos de la lista original a la lista ordenada
+        Nodo aux = inicio;
+        while (aux != null) {
+            listaOrdenada.insertar(aux.dato.toString()); // Realizar el cast a String
+            aux = aux.siguiente;
+        }
+
+        int n = listaOrdenada.size();
+        if (n <= 1) {
+            return listaOrdenada; // No es necesario ordenar una lista vacía o con un solo elemento
+        }
+
+        Nodo actual = (Nodo) listaOrdenada.getInicio();
+        boolean intercambiado;
+        do {
+            intercambiado = false;
+            for (int i = 0; i < n - 1; i++) {
+                String datoActual = actual.dato.toString().substring(0, 3);
+                Nodo siguiente = actual.siguiente;
+                String datoSiguiente = siguiente.dato.toString().substring(0, 3);
+                if (datoActual.compareTo(datoSiguiente) > 0) {
+                    // Intercambiar los datos de los nodos
+                    String temp = actual.dato.toString();
+                    actual.dato = siguiente.dato;
+                    siguiente.dato = (T) temp;
+                    intercambiado = true;
+                }
+                actual = siguiente;
+            }
+            n--;
+            actual = (Nodo) listaOrdenada.inicio;
+        } while (intercambiado);
+
+        return listaOrdenada;
+    }
+
 
 
 
